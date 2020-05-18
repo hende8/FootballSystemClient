@@ -40,7 +40,7 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
     }
 
         public static void changeScene(String userName, String fxml) throws Exception{
-//        this.userName = userName;
+
         Parent root = FXMLLoader.load(StageListener.class.getClassLoader().getResource(fxml));
         Scene scene = new Scene(root,1440,844);
         primaryStage.setScene(scene);

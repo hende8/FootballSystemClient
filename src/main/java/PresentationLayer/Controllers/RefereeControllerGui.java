@@ -4,27 +4,25 @@ package PresentationLayer.Controllers;
 //import PresentationLayer.ScreenController;
 //import System.Exeptions.NoRefereePermissions;
 //import System.Exeptions.NoSuchEventException;
+
+import PresentationLayer.ScreenController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
-import java.util.List;
 
 
-public class RefereeControllerGui {
+public class RefereeControllerGui extends ControllerGUI{
 
 
     @FXML
@@ -136,13 +134,17 @@ public class RefereeControllerGui {
 
     @FXML
     VBox eventMenu;
-
+    String url="http://localHost:8090/api/referee";
     @FXML
-//    public void initialize() {
-//        gameInfo = new HashMap<>();
-//        userInfo.setText(ScreenController.getInstance().userName);
+    public void initialize() {
+        gameInfo = new HashMap<>();
+        userInfo.setText(ScreenController.getInstance().userName);
 //        List<String> myGames = RefereeController.getInstance().getMyGames(ScreenController.getInstance().userName);
-//        if (myGames.size() > 0) {
+        String name = username;
+        ResponseEntity<String> responseEntity = getRequest(url+"/getMyGames/"+name);
+        System.out.println(responseEntity.getBody());
+
+//        if (responseEntity.getBody().length() > 0) {
 //            String str = myGames.get(0);
 //            String[] arrayInfo = str.split(",");
 //            changeText(info1, teamHomeName1, teamAwayName1, time1, date1, arrayInfo);
@@ -177,21 +179,23 @@ public class RefereeControllerGui {
 //            gameInfo.put(info5, arrayInfo[4]);
 //        }
 //    }
-
-    private void changeText(Pane info, Text teamHomeName, Text teamAwayName, Text time, Text date, String[] arrayInfo) {
-        info.setVisible(true);
-        teamHomeName.setText(arrayInfo[0]);
-        teamAwayName.setText(arrayInfo[1]);
-        time.setText(arrayInfo[2]);
-        date.setText(arrayInfo[3]);
+//
+//    private void changeText(Pane info, Text teamHomeName, Text teamAwayName, Text time, Text date, String[] arrayInfo) {
+//        info.setVisible(true);
+//        teamHomeName.setText(arrayInfo[0]);
+//        teamAwayName.setText(arrayInfo[1]);
+//        time.setText(arrayInfo[2]);
+//        date.setText(arrayInfo[3]);
     }
 
-//    public void updateEvent(String type, String info) {
+    public void updateEvent(String type, String info) {
 //        updateEvents();
-//        if (type.equals("Score")) {
+        if (type.equals("Score")) {
+            ResponseEntity<String> responseEntity = getRequest(url+"/"+info+"/"+ScreenController.getInstance().userName);
+            System.out.println(responseEntity.toString());
 //            score.setText(RefereeController.getInstance().getScore(info, ScreenController.getInstance().userName));
-//        }
-//    }
+        }
+    }
 
     @FXML
     public void postEvent(Event event) {
@@ -205,7 +209,7 @@ public class RefereeControllerGui {
                 str = "AddEventReport.fxml";
             }
             Stage stage = new Stage();
-//            ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
+            ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
             Parent root = FXMLLoader.load(getClass().getResource(str));
             stage.setScene(new Scene(root, 600, 400));
             stage.show();

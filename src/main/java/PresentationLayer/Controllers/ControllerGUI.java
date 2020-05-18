@@ -1,14 +1,22 @@
 package PresentationLayer.Controllers;
 
 //import PresentationLayer.ScreenController;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import org.json.JSONObject;
+import org.springframework.http.*;
+import org.springframework.web.client.RestTemplate;
 
-public class ControllerGUI {
+import java.util.HashMap;
+
+public class ControllerGUI extends ImageView {
+    static String username;
     @FXML
     Pane footballAssociationMenuPane;
     @FXML
@@ -116,6 +124,38 @@ public class ControllerGUI {
         ((Button)e.getSource()).setStyle("-fx-background-color: #000F64 ; -fx-background-radius:10");
     }
 
+    public ResponseEntity<String> postRequestHashMap(String url, HashMap hashmap) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        final HttpEntity<HashMap<String, String>> entity = new HttpEntity<HashMap<String, String>>(hashmap , headers);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        ResponseEntity<String> responseEntity=null;
+        try {
+            responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+        }catch (Exception e){
+            return null;
 
+        }
+        return responseEntity ;
+    }
+
+
+    public ResponseEntity<String> getRequest(String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject personJsonObject = new JSONObject();
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity , String.class);
+        try {
+            responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        }catch (Exception e){
+            return null;
+
+        }
+        return responseEntity ;
+    }
 
 }
