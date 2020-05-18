@@ -15,7 +15,7 @@
             <children>
                 <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../java/pictures/Vector.png" />
+                        <Image url="@../pictures/Vector.png" />
                     </image>
                 </ImageView>
                 <Text layoutX="110.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in into your account" textAlignment="CENTER" wrappingWidth="325.77490234375">
@@ -30,7 +30,7 @@
                 </TextField>
                 <ImageView fx:id="nameImg" fitHeight="19.99" fitWidth="20.0" layoutX="147.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" visible="false">
                     <image>
-                        <Image url="@../java/pictures/user.png" />
+                        <Image url="@../pictures/user.png" />
                     </image>
                 </ImageView>
                 <PasswordField fx:id="userPass" layoutX="133.0" layoutY="356.0" onMouseClicked="#handleMouseClickedPass" prefHeight="50.0" prefWidth="280.0" promptText="           Password" style="-fx-background-radius: 10; -fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10; -fx-prompt-text-fill: #6B6B6B;">
@@ -44,7 +44,7 @@
                     </font></Button>
                 <ImageView fx:id="passImg" fitHeight="19.99" fitWidth="20.0" layoutX="147.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../java/pictures/pass.png" />
+                        <Image url="@../pictures/pass.png" />
                     </image>
                 </ImageView>
                 <Text layoutX="157.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have account ? ">

@@ -3,13 +3,11 @@ package PresentationLayer;
 //import PresentationLayer.Controllers.RefereeControllerGui;
 //import System.Users.Referee;
 //import System.Users.User;
+
 import PresentationLayer.Controllers.RefereeControllerGui;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotResult;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
