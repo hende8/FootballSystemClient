@@ -1,6 +1,6 @@
 package PresentationLayer.Controllers;
 
-//import PresentationLayer.ScreenController;
+import PresentationLayer.ScreenController;
 //import ServiceLayer.*;
 //
 //import System.Exeptions.NoSuchAUserNamedException;
@@ -12,8 +12,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.http.HttpHeaders;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -81,6 +82,13 @@ public class LoginController extends ImageView{
         } catch (MalformedURLException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
+            try {
+                ScreenController.getInstance().changeScene("fan", "MainFanMenu.fxml");
+                e1.printStackTrace();
+            }
+            catch (Exception e){
+
+            }
             e1.printStackTrace();
         }
 //        headers.set("Content-Type", "application/json");
@@ -158,6 +166,20 @@ private void parseBody(String s,String val){
             nameImg.setVisible(true);
         }
 
+    }
+
+    public void sendInfo(){
+        String myIP ="localHost";
+        String myPort = "8091";
+        String userName = ScreenController.getInstance().userName;
+        String addListener = "http://localHost:8090/api/notification/register/{"+myIP+"}/{"+myPort+"}/"+"{"+userName+"}";
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> e = new HttpEntity<>(headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
     }
 
 }

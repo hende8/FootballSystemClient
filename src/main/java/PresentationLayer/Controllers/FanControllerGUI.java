@@ -1,42 +1,53 @@
-//package PresentationLayer.Controllers;
-//
-//import PresentationLayer.ScreenController;
-//import ServiceLayer.FootballAssosiationController;
-//import System.Users.Fan;
-//import javafx.collections.ObservableList;
-//import javafx.fxml.FXML;
-//import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.control.*;
-//import javafx.scene.layout.VBox;
-//import javafx.scene.paint.Color;
-//import javafx.scene.text.Text;
-//
-////import java.awt.*;
-//import javafx.scene.layout.Pane;
-//import javafx.scene.text.TextFlow;
-//import java.util.List;
-//
-//public class FanControllerGUI {
-//    @FXML
-//    TextFlow textAlert;
-//
-//    @FXML
-//    Button logOutBtn;
-//
-//    @FXML
-//    VBox eventMenu;
-//
-//    @FXML
-//    ScrollPane scrollAlerts;
-//
-//
-//    @FXML
-//    public void initialize() {
-//        showAlert();
-//    }
-//    @FXML
-//    public void showAlert(){
+package PresentationLayer.Controllers;
+
+import PresentationLayer.ScreenController;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
+//import java.awt.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.TextFlow;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/notification")
+
+public class FanControllerGUI {
+    @FXML
+    TextFlow textAlert;
+
+    @FXML
+    Button logOutBtn;
+
+    @FXML
+    VBox eventMenu;
+
+    @FXML
+    ScrollPane scrollAlerts;
+
+
+
+    @PostMapping(value = "/event/{message}")
+    public void login(@PathVariable("message")String msg )  {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION , msg);
+    }
+    @FXML
+    public void initialize() {
+     //   showAlert();
+    }
+    @FXML
+    public void showAlert(){
 //        List<String> alerts= ScreenController.getInstance().getAlertsList();
 //        if(alerts!=null) {
 //            eventMenu.getChildren().removeAll(eventMenu.getChildren());
@@ -60,34 +71,34 @@
 //                eventMenu.getChildren().addAll(pane);
 //            }
 //        }
-//    }
-//
-//    @FXML
-//    public void mouseInL(){
-//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
-//    }
-//
-//    @FXML
-//    public void mouseOutL(){
-//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
-//    }
-//
-//    @FXML
-//    public void handleLogOut() throws Exception {
-//        ScreenController.getInstance().changeSenceLogOut();
-//    }
-//
-//    @FXML
-//    public void removeAlert(){
-//        System.out.println("jsdjkcbsjhdcbjshdcbjhsdcbjhsdc");
-//    }
-//
-//    public void removeAlert(Button bRemove){
-//        Parent parent =  bRemove.getParent();
-//        ObservableList<Node> childrenUnmodifiable = parent.getChildrenUnmodifiable();
-//        Node alertToDelete= childrenUnmodifiable.get(0);
-//        String alertM= ((Text)alertToDelete).	getText();
-//        ScreenController.getInstance().removeAlert(alertM);
-//        showAlert();
-//    }
-//}
+    }
+
+    @FXML
+    public void mouseInL(){
+        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
+    }
+
+    @FXML
+    public void mouseOutL(){
+        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
+    }
+
+    @FXML
+    public void handleLogOut() throws Exception {
+        ScreenController.getInstance().changeSenceLogOut();
+    }
+
+    @FXML
+    public void removeAlert(){
+        System.out.println("jsdjkcbsjhdcbjshdcbjhsdcbjhsdc");
+    }
+
+    public void removeAlert(Button bRemove){
+        Parent parent =  bRemove.getParent();
+        ObservableList<Node> childrenUnmodifiable = parent.getChildrenUnmodifiable();
+        Node alertToDelete= childrenUnmodifiable.get(0);
+        String alertM= ((Text)alertToDelete).	getText();
+        ScreenController.getInstance().removeAlert(alertM);
+        showAlert();
+    }
+}
