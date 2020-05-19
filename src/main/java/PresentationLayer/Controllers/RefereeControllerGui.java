@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -285,20 +286,17 @@ public class RefereeControllerGui extends ControllerGUI{
 
 
 
-//        String refereeName = ScreenController.getInstance().userName;
-//        String gameId = gameInfo.get(info);
-//
-//        List<String> result = getListRequest(url+"/getScore/"+gameId+"/"+refereeName);
-//        score.setText(result.get(0));
-//        List<String> result1= getListRequest(url+"/isGameLive/"+gameId+"/"+refereeName);
-//        System.out.println(result1);
-//
-//        if (getListRequest(url+"/isGameLive/"+gameId+"/"+refereeName).get(0).equals("true")) {
-//            liveInfo.setVisible(true);
-//        } else {
-//            liveInfo.setVisible(false);
-//        }
-//        updateEvents();
+        String refereeName = username;
+        String gameId = gameInfo.get(info);
+        ResponseEntity<String> r =getStringRequest(url+"/getScore/"+gameId+"/"+refereeName);
+        score.setText(r.getBody());
+        ResponseEntity<String> result1= getStringRequest(url+"/isGameLive/"+gameId+"/"+refereeName);
+        if (result1.getBody().equals("true")) {
+            liveInfo.setVisible(true);
+        } else {
+            liveInfo.setVisible(false);
+        }
+        updateEvents();
 
     }
 
@@ -357,7 +355,7 @@ public class RefereeControllerGui extends ControllerGUI{
         pane2.setStyle("-fx-background-color:  White ; -fx-background-radius: 10 ;");
 
         eventMenu.getChildren().addAll(pane2);
-        List<String> events = getListRequest(url+"/getMyGames/"+gameInfo.get(currPane)+"/"+ ScreenController.getInstance().userName);
+        List<String> events = getListRequest(url+"/getEvents/"+gameInfo.get(currPane)+"/"+ username);
         for (String str : events) {
             if(!(str.contains("Goal")||str.contains("Yellow")||str.contains("Red"))){
                 continue;
@@ -386,6 +384,7 @@ public class RefereeControllerGui extends ControllerGUI{
             ImageView image;
             if (output[0].contains("Goal")) {
                 image = new ImageView(new Image("\\pictures\\goal.png"));
+//                image = new ImageView(new ImageIcon(this.getClass().getResource("/images/bell-icon16.png")).getImage());
                 image.setFitWidth(20);
                 image.setFitHeight(20);
             } else if (output[0].contains("YellowCard")) {
@@ -393,7 +392,11 @@ public class RefereeControllerGui extends ControllerGUI{
                 image.setFitWidth(14);
                 image.setFitHeight(20);
             } else if (output[0].contains("RedCard")) {
-                image = new ImageView(new Image("\\pictures\\redCard.png"));
+//                System.out.println(this.getClass().getResource("/pictures/redCard.png").toString());
+                System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+                Image o=new Image("System.getProperty(\"user.dir\")+\\src\\main\\java\\pictures\\redCard.png");
+                image = new ImageView(new Image("\\src\\main\\java\\pictures\\redCard.png"));
                 image.setFitWidth(14);
                 image.setFitHeight(20);
             } else {

@@ -14,11 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 
@@ -37,8 +35,6 @@ public class LoginController extends ControllerGUI{
     ImageView passImg;
     @FXML
     Button loginBtn;
-    RestTemplate restTemplate = new RestTemplate();
-    HttpHeaders headers = new HttpHeaders();
 
     @FXML
     @ResponseBody
