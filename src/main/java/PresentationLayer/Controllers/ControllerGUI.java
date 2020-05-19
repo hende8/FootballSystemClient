@@ -14,6 +14,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ControllerGUI extends ImageView {
     static String username;
@@ -141,21 +142,22 @@ public class ControllerGUI extends ImageView {
     }
 
 
-    public ResponseEntity<String> getRequest(String url) {
+    public List<String> getListRequest(String url) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type","application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
         JSONObject personJsonObject = new JSONObject();
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity , String.class);
+        List<String> responseEntity = null;
         try {
-            responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+            responseEntity = restTemplate.getForObject(url, List.class);
         }catch (Exception e){
             return null;
 
         }
         return responseEntity ;
     }
+
 
 }

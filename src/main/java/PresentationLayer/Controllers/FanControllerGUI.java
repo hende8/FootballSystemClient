@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/api/notification")
 
 public class FanControllerGUI {
     @FXML
@@ -38,10 +36,6 @@ public class FanControllerGUI {
 
 
 
-    @PostMapping(value = "/event/{message}")
-    public void login(@PathVariable("message")String msg )  {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION , msg);
-    }
     @FXML
     public void initialize() {
      //   showAlert();

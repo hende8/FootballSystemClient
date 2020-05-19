@@ -1,5 +1,6 @@
 package PresentationLayer.Controllers;
 
+import FootballSystem.bootApp;
 import PresentationLayer.ScreenController;
 //import ServiceLayer.*;
 //
@@ -9,7 +10,9 @@ import PresentationLayer.ScreenController;
 //import System.Users.User;
 
 import FootballSystem.StageListener;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -19,13 +22,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 
-@Component
+
 @FxmlView("login.fxml")
+
 public class LoginController extends ControllerGUI{
 
     String url = "http://localHost:8090/login";
@@ -42,10 +46,11 @@ public class LoginController extends ControllerGUI{
     RestTemplate restTemplate = new RestTemplate();
     HttpHeaders headers = new HttpHeaders();
 
+
     @FXML
     @ResponseBody
         public void handleLogin() throws Exception {
-
+        sendInfo();
         if (userPass.getText().length() == 0) {
             passImg.setVisible(true);
             userPass.setStyle("-fx-prompt-text-fill: #6B6B6B ; -fx-background-radius: 10;-fx-background-color: transparent;-fx-border-color: black;-fx-border-radius: 10");
@@ -95,6 +100,7 @@ private void parseBody(String s,String val){
     @FXML
     public void initialize() {
         userName.setStyle("-fx-prompt-text-fill: transparent; -fx-background-radius: 10;-fx-background-color: transparent;-fx-border-color: black;-fx-border-radius: 10");
+        bootApp.addListener(this);
     }
 
     @FXML
@@ -121,8 +127,8 @@ private void parseBody(String s,String val){
     public void sendInfo(){
         String myIP ="localHost";
         String myPort = "8091";
-        String userName = ScreenController.getInstance().userName;
-        String addListener = "http://localHost:8090/api/notification/register/{"+myIP+"}/{"+myPort+"}/"+"{"+userName+"}";
+        String userName = "Max";//ScreenController.getInstance().userName;
+        String addListener = "http://localHost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -130,6 +136,19 @@ private void parseBody(String s,String val){
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> e = new HttpEntity<>(headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
+        System.out.println("dd");
+    }
+
+    @FXML
+    public void update(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"AAA");
+                alert.show();
+            }
+        });
+
     }
 
 }
