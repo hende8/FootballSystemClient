@@ -1,24 +1,13 @@
 package PresentationLayer;
 
 
-import FootballSystem.FootballSystemApplication;
-//import PresentationLayer.Controllers.LoginController;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
-import java.awt.event.ActionEvent;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 @SpringBootApplication
 public class Main extends Application {

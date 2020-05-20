@@ -1,12 +1,10 @@
 package PresentationLayer.Controllers;
 
 import PresentationLayer.ScreenController;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,6 +15,9 @@ public class AddEventController extends ControllerGUI {
 
     @FXML
     ComboBox<String> comboEventBox;
+
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML
     TextField playerNameText;
@@ -36,13 +37,22 @@ public class AddEventController extends ControllerGUI {
     @FXML
     RadioButton away;
 
+    @FXML
+            Label eventTypeValidate;
+    @FXML
+            Label minuteValidate;
+    @FXML
+            Label playerNameValidate;
 
-
+    @FXML
+            Button closeButton;
     String gameID;
 
     @FXML
     public void initialize() {
-
+        eventTypeValidate.setVisible(false);
+        minuteValidate.setVisible(false);
+        playerNameValidate.setVisible(false);
         comboEventBox.getItems().addAll("Red Card", "Yellow Card", "Offside", "Goal", "Injury", "Offense");
         String[] str = (ScreenController.getInstance().getGameInfo()).split(",");
         teamNameHome.setText(str[0]);
@@ -63,55 +73,68 @@ public class AddEventController extends ControllerGUI {
     @FXML
     public void postEvent(Event event) {
         Button btn = ((Button) event.getSource());
-        String str ="something goes wrong";
-        try {
+        if (addEventValidate()) {
             String eventType = comboEventBox.getValue().replace(" ", "");
+            int time2 = Integer.parseInt(timeEvent.getText());
             String playerName = playerNameText.getText();
-            if(!checkPlayerName(playerName)){
-                str = "The player name should contain only letters";
-                throw new Exception();
-            }
-            String time = timeEvent.getText();
-            if(!(checkMin(time))) {
-                str = "The min should be number between 1 to 120";
-                throw new Exception();
-            }
-            int time2 = Integer.parseInt(time);
             String team = "";
-            if(home.isSelected()){
+            if (home.isSelected()) {
                 team = teamNameHome.getText();
+            } else if (away.isSelected()) {
+                team = teamNameAway.getText();
             }
-           else if(away.isSelected()){
-               team = teamNameAway.getText();
-            }
-           else{
-                str ="You have to choose a team";
-                throw new Exception();
-            }
+            HashMap<String, String> hashDetails = new HashMap<>();
+            hashDetails.put("user_name", username);
+            hashDetails.put("game", gameID);
+            hashDetails.put("type", eventType);
+            hashDetails.put("min", String.valueOf(time2));
+            hashDetails.put("playerName", playerName);
+            hashDetails.put("team", team);
 
-//            RefereeController.getInstance().addEventDuringGame(ScreenController.getInstance().userName, gameID, eventType, time2, playerName, team);
-            HashMap <String,String> hashDetails= new HashMap<>();
-            hashDetails.put("user_name",username);
-            hashDetails.put("game",gameID);
-            hashDetails.put("type",eventType);
-            hashDetails.put("min",String.valueOf(time2));
-            hashDetails.put("playerName",playerName);
-            hashDetails.put("team",team);
+            postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
+            if (eventType.equals("Goal") || eventType.equals("YellowCard") || eventType.equals("RedCard")) {
+                ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score", gameID);
+            }
+            showAlert("Event added successfully");
+        }
 
-           postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame",hashDetails);
-           if (eventType.equals("Goal")||eventType.equals("YellowCard")||eventType.equals("RedCard")) {
-              ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score",gameID);
-           }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Event added successfully");
-            alert.show();
-            Stage stage = (Stage) btn.getScene().getWindow();
-            stage.close();
 
         }
-        catch (Exception e){
-            e.printStackTrace();
-            showAlert("Something went wrong...");
+
+
+    private boolean addEventValidate() {
+        eventTypeValidate.setVisible(false);
+        minuteValidate.setVisible(false);
+        playerNameValidate.setVisible(false);
+        boolean confirm = true;
+        String msg="";
+        if(comboEventBox.getValue()==null ||comboEventBox.getValue().equals("Event Type") ){
+            confirm=false;
+            eventTypeValidate.setVisible(true);
+
+            msg +="Choose event type"+"\n";
         }
+        String time = timeEvent.getText();
+        if(timeEvent.getText()==null || timeEvent.getText().equals("") ||!(checkMin(time)) ){
+            confirm=false;
+            minuteValidate.setVisible(true);
+            msg +="The minute should be number between 1 to 120"+"\n";
+        }
+
+        String playerName = playerNameText.getText();
+        if( playerName.equals("") || !checkPlayerName(playerName)){
+            confirm=false;
+            playerNameValidate.setVisible(true);
+            msg+="The player name should contain only letters"+"\n";
+        }
+
+        if(!home.isSelected() && !away.isSelected()){
+            msg+="You have to choose a team"+"\n";
+            confirm=false;
+        }
+        showAlert(msg);
+        return confirm;
+
     }
 
     private boolean checkPlayerName(String str){
@@ -135,5 +158,17 @@ public class AddEventController extends ControllerGUI {
             return false;
         }
         return true;
+    }
+    @FXML
+    public void closeAddEvent(){
+        eventTypeValidate.setVisible(false);
+        minuteValidate.setVisible(false);
+        playerNameValidate.setVisible(false);
+        playerNameText.clear();
+        timeEvent.clear();
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+        home.fire();
+        away.fire();
     }
 }

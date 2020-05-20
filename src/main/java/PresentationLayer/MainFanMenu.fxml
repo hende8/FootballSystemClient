@@ -48,7 +48,7 @@
                     <font>
                         <Font name="Open Sans" size="16.0" />
                     </font></Button>
-                <Button fx:id="logOutBtn" layoutX="14.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleLogOut" onMouseEntered="#mouseInL" onMouseExited="#mouseOutL" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: white; -fx-background-color: #A73A33; -fx-background-radius: 10;" text="Log Out">
+                <Button fx:id="logOutBtn" layoutX="18.0" layoutY="845.0" mnemonicParsing="false" onAction="#handleLogOut" onMouseEntered="#mouseInL" onMouseExited="#mouseOutL" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: white; -fx-background-color: #A73A33; -fx-background-radius: 10;" text="Log Out">
                     <font>
                         <Font name="Open Sans" size="16.0" />
                     </font>
@@ -58,7 +58,7 @@
                         <Font name="Open Sans" size="16.0" />
                     </font>
                 </Text>
-                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="720.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="815.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../pictures/profilePic.png" />
                     </image>

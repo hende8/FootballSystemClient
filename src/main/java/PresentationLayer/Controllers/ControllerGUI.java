@@ -2,6 +2,7 @@ package PresentationLayer.Controllers;
 
 //import PresentationLayer.ScreenController;
 
+import FootballSystem.StageListener;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -93,7 +94,8 @@ public class ControllerGUI extends ImageView {
     }
     @FXML
     public void handleLogOut() throws Exception {
-//        ScreenController.getInstance().changeSenceLogOut();
+        getStringRequest("http://localhost:8090/api/user/logOut/"+username);
+        StageListener.changeScene(username,"login.fxml");
     }
     @FXML
     public void handleMouseClickedPass() {
