@@ -15,7 +15,7 @@
             <children>
                 <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/Vector.png" />
+                  <Image url="@../../src/main/java/java/pictures/Vector.png" />
                </image>
                 </ImageView>
                 <Text layoutX="110.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in into your account" textAlignment="CENTER" wrappingWidth="325.77490234375">

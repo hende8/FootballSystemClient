@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.AddEventController">
+   <children>
+      <Pane layoutX="75.0" layoutY="90.0" prefHeight="170.0" prefWidth="225.0" style="-fx-background-color: #F6F6F4; -fx-background-radius: 10;">
+         <children>
+            <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="72.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../java/pictures/teamHome.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="72.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../java/pictures/teamAway.png" />
+               </image>
+            </ImageView>
+            <RadioButton fx:id="home" layoutX="27.0" layoutY="50.0" mnemonicParsing="false" onAction="#clickHomeRadio" prefHeight="17.0" prefWidth="21.0" />
+            <RadioButton fx:id="away" layoutX="27.0" layoutY="116.0" mnemonicParsing="false" onAction="#clickAwayRadio" prefHeight="17.0" prefWidth="21.0" />
+            <Text fx:id="teamNameAway" fill="#444444" layoutX="124.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chelsea" textAlignment="CENTER" wrappingWidth="86.77490234375">
+               <font>
+                  <Font name="Open Sans" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="teamNameHome" fill="#444444" layoutX="124.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chelsea" textAlignment="CENTER" wrappingWidth="86.77490234375">
+               <font>
+                  <Font name="Open Sans" size="16.0" />
+               </font>
+            </Text>
+         </children></Pane>
+      <ComboBox fx:id="comboEventBox" layoutX="345.0" layoutY="90.0" prefHeight="50.0" prefWidth="184.0" promptText="Event Type" style="fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-color: black; -fx-prompt-text-fill: #6B6B6B;" />
+      <TextField fx:id="playerNameText" layoutX="346.0" layoutY="150.0" prefHeight="50.0" prefWidth="183.0" promptText="Player Name" style="-fx-alignment: center-left; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-background-color: transparent; -fx-prompt-text-fill: black;">
+         <font>
+            <Font name="Open Sans" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="timeEvent" layoutX="345.0" layoutY="210.0" prefHeight="50.0" prefWidth="184.0" promptText="Minute" style="-fx-alignment: center-left; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-background-color: transparent; -fx-prompt-text-fill: black;">
+         <font>
+            <Font name="Open Sans" size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="188.0" layoutY="317.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #2060E4; -fx-border-radius: 10;" text="CLOSE" textFill="#2060e4">
+         <font>
+            <Font name="Open Sans Semibold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="post" layoutX="334.0" layoutY="317.0" mnemonicParsing="false" onAction="#postEvent" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #2060E4; -fx-border-radius: 10; -fx-background-color: #2060E4; -fx-background-radius: 10;" text="POST" textFill="WHITE">
+         <font>
+            <Font name="Open Sans Semibold" size="16.0" />
+         </font>
+      </Button>
+      <Text fill="#444444" layoutX="230.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Event" textAlignment="CENTER" wrappingWidth="148.77490234375">
+         <font>
+            <Font name="Open Sans Semibold" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

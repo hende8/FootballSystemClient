@@ -158,6 +158,16 @@ public class ControllerGUI extends ImageView {
         }
         return responseEntity ;
     }
+    public ResponseEntity<String> getStringRequest(String url){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        JSONObject personJsonObject = new JSONObject();
+        HttpEntity<String> e = new HttpEntity<>(headers);
+        return restTemplate.exchange(url, HttpMethod.GET, e , String.class);
+
+    }
 
 
 }
