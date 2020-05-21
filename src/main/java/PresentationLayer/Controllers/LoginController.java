@@ -111,7 +111,7 @@ public class LoginController extends ControllerGUI{
     @FXML
     public void initialize() {
         userName.setStyle("-fx-prompt-text-fill: transparent; -fx-background-radius: 10;-fx-background-color: transparent;-fx-border-color: black;-fx-border-radius: 10");
-        bootApp.addListener(this);
+
     }
 
     @FXML
@@ -136,10 +136,10 @@ public class LoginController extends ControllerGUI{
     }
 
     public void sendInfo(){
-        String myIP ="localHost";
-        String myPort = "8091";
-        String userName = "Max";//ScreenController.getInstance().userName;
-        String addListener = "http://localHost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
+        String myIP ="localhost";
+        String myPort = "8092";
+        String userName = username;//ScreenController.getInstance().userName;
+        String addListener = "http://localhost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -147,19 +147,18 @@ public class LoginController extends ControllerGUI{
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> e = new HttpEntity<>(headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
-        System.out.println("dd");
     }
-
-    @FXML
-    public void update(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION,"AAA");
-                alert.show();
-            }
-        });
-
-    }
+//
+//    @FXML
+//    public void update(String alert1){
+//        Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION,alert1);
+//        alert.show();
+//            }
+//        });
+//
+//    }
 
 }
