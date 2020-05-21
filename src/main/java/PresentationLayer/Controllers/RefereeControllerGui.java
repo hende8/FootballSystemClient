@@ -138,7 +138,7 @@ public class RefereeControllerGui extends ControllerGUI{
 
     @FXML
     VBox eventMenu;
-    String url="http://localHost:8090/api/referee";
+    String url="http://132.72.65.99:8090/api/referee";
     @FXML
     public void initialize() {
         gameInfo = new HashMap<>();

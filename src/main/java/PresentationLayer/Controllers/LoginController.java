@@ -49,7 +49,7 @@ public class LoginController extends ControllerGUI{
             userName.setStyle("-fx-prompt-text-fill: #6B6B6B; -fx-background-radius: 10;-fx-background-color: transparent;-fx-border-color: black;-fx-border-radius: 10");
         }
         String userN = userName.getText();
-        String login = "http://localHost:8090/api/user/login";
+        String login = "http://132.72.65.99:8090/api/user/login";
         HashMap<String, String> hashmap = new HashMap();
         hashmap.put("password", userPass.getText());
         hashmap.put("user_name", userName.getText());
