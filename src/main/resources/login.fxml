@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +16,7 @@
             <children>
                 <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/Vector.png" />
+                  <Image url="@../../src/main/java/java/pictures/Vector.png" />
                </image>
                 </ImageView>
                 <Text layoutX="110.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in into your account" textAlignment="CENTER" wrappingWidth="325.77490234375">
@@ -64,5 +65,15 @@
                 <!--<Image url="@../java/pictures/football%201.png" />-->
             </image>
         </ImageView>
+      <Label fx:id="usernameValidate" layoutX="415.0" layoutY="270.0" prefHeight="56.0" prefWidth="7.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="passValidate" layoutX="415.0" layoutY="335.0" prefHeight="56.0" prefWidth="7.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

@@ -5,6 +5,7 @@ package PresentationLayer.Controllers;
 //import System.Exeptions.NoRefereePermissions;
 //import System.Exeptions.NoSuchEventException;
 
+import FootballSystem.StageListener;
 import PresentationLayer.ScreenController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +22,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
@@ -138,7 +144,7 @@ public class RefereeControllerGui extends ControllerGUI{
 
     @FXML
     VBox eventMenu;
-    String url="http://132.72.65.99:8090/api/referee";
+    String url="http://localhost:8090/api/referee";
     @FXML
     public void initialize() {
         gameInfo = new HashMap<>();
@@ -180,6 +186,11 @@ public class RefereeControllerGui extends ControllerGUI{
             gameInfo.put(info5, arrayInfo[4]);
         }
     }
+    @FXML
+    public void handleLogOutttt() throws Exception {
+        System.out.println(getStringRequest("http://localhost:8090/api/user/logOut/"+username).getBody());
+        StageListener.changeScene(username,"login.fxml");
+    }
 //
     private void changeText(Pane info, Text teamHomeName, Text teamAwayName, Text time, Text date, String[] arrayInfo) {
         info.setVisible(true);
@@ -193,8 +204,10 @@ public class RefereeControllerGui extends ControllerGUI{
     public void updateEvent(String type, String info) {
         updateEvents();
         if (type.equals("Score")) {
-            List<String> result = getListRequest(url+"/getScore/"+info+"/"+ScreenController.getInstance().userName);
-            score.setText(result.get(0));
+            String refereeName = username;
+            //String gameId = gameInfo.get(info);
+            ResponseEntity<String> result = getStringRequest(url+"/getScore/"+info+"/"+refereeName);
+            score.setText(result.getBody());
         }
     }
 
@@ -339,6 +352,7 @@ public class RefereeControllerGui extends ControllerGUI{
     public void onHover(Event event) {
         Button btn = ((Button) event.getSource());
         btn.setStyle("-fx-background-color: #4179F0 ; -fx-background-radius:10; -fx-text-fill: white");
+
     }
 
     @FXML
@@ -383,29 +397,29 @@ public class RefereeControllerGui extends ControllerGUI{
             text.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
             ImageView image;
             if (output[0].contains("Goal")) {
-                image = new ImageView(new Image("\\pictures\\goal.png"));
-//                image = new ImageView(new ImageIcon(this.getClass().getResource("/images/bell-icon16.png")).getImage());
-                image.setFitWidth(20);
-                image.setFitHeight(20);
+//                image = new ImageView(new Image("\\pictures\\goal.png"));
+////                image = new ImageView(new ImageIcon(this.getClass().getResource("/images/bell-icon16.png")).getImage());
+//                image.setFitWidth(20);
+//                image.setFitHeight(20);
             } else if (output[0].contains("YellowCard")) {
-                image = new ImageView(new Image("\\pictures\\yellowCard.png"));
-                image.setFitWidth(14);
-                image.setFitHeight(20);
+//                image = new ImageView(new Image("\\pictures\\yellowCard.png"));
+//                image.setFitWidth(14);
+//                image.setFitHeight(20);
             } else if (output[0].contains("RedCard")) {
 //                System.out.println(this.getClass().getResource("/pictures/redCard.png").toString());
                 System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-                Image o=new Image("System.getProperty(\"user.dir\")+\\src\\main\\java\\pictures\\redCard.png");
-                image = new ImageView(new Image("\\src\\main\\java\\pictures\\redCard.png"));
-                image.setFitWidth(14);
-                image.setFitHeight(20);
+//                Image o=new Image("System.getProperty(\"user.dir\")+\\src\\main\\java\\pictures\\redCard.png");
+//                image = new ImageView(new Image("\\src\\main\\java\\pictures\\redCard.png"));
+//                image.setFitWidth(14);
+//                image.setFitHeight(20);
             } else {
                 break;
             }
 
 
-            image.setLayoutX(314);
-            image.setLayoutY(13);
+//            image.setLayoutX(314);
+//            image.setLayoutY(13);
 
             Text text2 = new Text(secField);
             text2.setLayoutX(394);
@@ -413,7 +427,7 @@ public class RefereeControllerGui extends ControllerGUI{
             text2.setFill(Color.web("#444444"));
             text2.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
 
-            pane.getChildren().addAll(text, image, text2);
+//            pane.getChildren().addAll(text, image, text2);
 
             pane2 = new Pane();
             pane2.setPrefWidth(600);
@@ -423,6 +437,9 @@ public class RefereeControllerGui extends ControllerGUI{
             eventMenu.getChildren().addAll(pane, pane2);
         }
     }
+
+    public void update(){}
+
 
 }
 

@@ -29,7 +29,7 @@ public class FootballSystemApplication extends Application {
 	public static void main(String[] args) {
 
 		SpringApplication.run(FootballSystemApplication.class, args);
-		Application.launch();
+	//	Application.launch();
 
 	}
 	@Override
