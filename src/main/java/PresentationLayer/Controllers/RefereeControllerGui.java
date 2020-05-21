@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -15,10 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
@@ -198,7 +193,6 @@ public class RefereeControllerGui extends ControllerGUI{
         updateEvents();
         if (type.equals("Score")) {
             String refereeName = username;
-            //String gameId = gameInfo.get(info);
             ResponseEntity<String> result = getStringRequest(url+"/getScore/"+info+"/"+refereeName);
             score.setText(result.getBody());
         }

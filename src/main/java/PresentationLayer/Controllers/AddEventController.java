@@ -96,6 +96,7 @@ public class AddEventController extends ControllerGUI {
                 ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score", gameID);
             }
             showAlert("Event added successfully");
+            closeAddEvent();
         }
 
 
@@ -132,7 +133,7 @@ public class AddEventController extends ControllerGUI {
             msg+="You have to choose a team"+"\n";
             confirm=false;
         }
-        showAlert(msg);
+        if(!msg.equals(""))showAlert(msg);
         return confirm;
 
     }
@@ -166,9 +167,10 @@ public class AddEventController extends ControllerGUI {
         playerNameValidate.setVisible(false);
         playerNameText.clear();
         timeEvent.clear();
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
         home.fire();
         away.fire();
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+
     }
 }

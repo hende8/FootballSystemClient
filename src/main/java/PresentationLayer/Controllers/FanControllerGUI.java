@@ -12,12 +12,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 //import java.awt.*;
 
-public class FanControllerGUI {
+@RequestMapping("/api/notification")
+@RestController
+public class FanControllerGUI extends ControllerGUI {
     @FXML
     TextFlow textAlert;
 
@@ -72,10 +78,6 @@ public class FanControllerGUI {
         logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
     }
 
-    @FXML
-    public void handleLogOut() throws Exception {
-        ScreenController.getInstance().changeSenceLogOut();
-    }
 
     @FXML
     public void removeAlert(){
@@ -89,5 +91,9 @@ public class FanControllerGUI {
         String alertM= ((Text)alertToDelete).	getText();
         ScreenController.getInstance().removeAlert(alertM);
         showAlert();
+    }
+    @PostMapping
+    public void postNotification(@RequestBody String body ){
+        showAlert(body);
     }
 }

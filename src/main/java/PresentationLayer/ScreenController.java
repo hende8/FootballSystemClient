@@ -5,9 +5,6 @@ package PresentationLayer;
 //import System.Users.User;
 
 import PresentationLayer.Controllers.RefereeControllerGui;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -15,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class ScreenController {
+public class ScreenController  {
 
     Stage primaryStage;
 
@@ -38,32 +35,6 @@ public class ScreenController {
 
     public RefereeControllerGui getRefereeControllerGui() {
         return refereeControllerGui;
-    }
-
-    public void setPrimaryStage(Stage stage){
-        this.primaryStage = stage;
-
-
-    }
-
-    public void changeScene(String userName, String fxml) throws Exception{
-        this.userName = userName;
-        Parent root = FXMLLoader.load(getClass().getResource(fxml));
-        primaryStage.setScene(new Scene(root, 1440, 895) );
-        primaryStage.show();
-    }
-
-    public void changeSenceLogOut() throws Exception{
-        userName = "";
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        primaryStage.setScene(new Scene(root, 1440, 844) );
-        primaryStage.show();
-    }
-    public void changeSceneFootballAssociation(String footballAssociation) throws Exception{
-        userName = footballAssociation;
-        Parent root = FXMLLoader.load(getClass().getResource("MainFootballAssociationMenu.fxml"));
-        primaryStage.setScene(new Scene(root, 1440, 895) );
-        primaryStage.show();
     }
 
 

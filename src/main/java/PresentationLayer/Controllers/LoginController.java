@@ -17,10 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.stage.Screen;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -137,10 +134,10 @@ public class LoginController extends ControllerGUI{
     }
 
     public void sendInfo(){
-        String myIP ="localHost";
+        String myIP ="localhost";
         String myPort = "8091";
-        String userName = "Max";//ScreenController.getInstance().userName;
-        String addListener = "http://localHost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
+        String userName = username;//ScreenController.getInstance().userName;
+        String addListener = "http://localhost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -148,7 +145,6 @@ public class LoginController extends ControllerGUI{
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> e = new HttpEntity<>(headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
-        System.out.println("dd");
     }
 
     @FXML

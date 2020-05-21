@@ -1,14 +1,12 @@
 package FootballSystem;
 
-import PresentationLayer.Controllers.RefereeControllerGui;
-import PresentationLayer.LoginController;
 import javafx.application.Application;
-import javafx.scene.control.Alert;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+//import PresentationLayer.LoginController;
 
 @SpringBootApplication
 @RequestMapping("/api/notification")

@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -67,9 +66,6 @@ public class ControllerGUI extends ImageView {
             alert.showAndWait();
 
     }
-
-
-
 
     @FXML
     public void mouseOut(Event e) {
@@ -149,8 +145,6 @@ public class ControllerGUI extends ImageView {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type","application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        JSONObject personJsonObject = new JSONObject();
-        HttpEntity<String> entity = new HttpEntity<>(headers);
         List<String> responseEntity = null;
         try {
             responseEntity = restTemplate.getForObject(url, List.class);
@@ -165,7 +159,6 @@ public class ControllerGUI extends ImageView {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type","application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
-        JSONObject personJsonObject = new JSONObject();
         HttpEntity<String> e = new HttpEntity<>(headers);
         return restTemplate.exchange(url, HttpMethod.GET, e , String.class);
 
