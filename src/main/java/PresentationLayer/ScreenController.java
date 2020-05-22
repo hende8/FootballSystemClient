@@ -36,6 +36,9 @@ public class ScreenController  {
     public RefereeControllerGui getRefereeControllerGui() {
         return refereeControllerGui;
     }
+    public void setRefereeControllerGui(RefereeControllerGui ref) {
+        refereeControllerGui=ref;
+    }
 
 
     public void saveGameInfo(String homeTeam , String awayTeam , String gameID , RefereeControllerGui refereeControllerGui){

@@ -1,18 +1,26 @@
 package FootballSystem;
 
+import PresentationLayer.Controllers.ControllerGUI;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
 import java.io.IOException;
 import java.net.URL;
 
 @Component
-public class StageListener implements ApplicationListener<StageReadyEvent> {
+public class StageListener extends ControllerGUI implements ApplicationListener<StageReadyEvent>  {
     private final String title;
     private static org.springframework.core.io.Resource fxml = null;
     private ApplicationContext ac;
@@ -51,7 +59,17 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
         }
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
+        primaryStage.setOnCloseRequest(e->{
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-Type","application/json");
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<String> e1 = new HttpEntity<>(headers);
+            restTemplate.exchange("http://localhost:8090/api/user/logOut/"+userName, HttpMethod.GET, e1 , String.class);
+
+        });
+            Text lblData = (Text) root.lookup("#userNameLabel");
+            if (lblData!=null) lblData.setText(userName);    }
 
 
 }

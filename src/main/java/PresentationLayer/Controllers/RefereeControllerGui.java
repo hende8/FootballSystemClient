@@ -29,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -132,6 +133,7 @@ public class RefereeControllerGui extends ControllerGUI{
     Pane rightPane;
 
     HashMap<Pane, String> gameInfo;
+    HashMap<Pane, String> gameTime;
 
     @FXML
     Text score;
@@ -149,6 +151,7 @@ public class RefereeControllerGui extends ControllerGUI{
     @FXML
     public void initialize() {
         gameInfo = new HashMap<>();
+        gameTime = new HashMap<>();
         userInfo.setText(ScreenController.getInstance().userName);
         String name = username;
         List<String> myGames = getListRequest(url+"/getMyGames/"+name);
@@ -156,6 +159,7 @@ public class RefereeControllerGui extends ControllerGUI{
             String str = myGames.get(0);
             String[] arrayInfo = str.split(",");
             changeText(info1, teamHomeName1, teamAwayName1, time1, date1, arrayInfo);
+            gameTime.put(info1,arrayInfo[5]);
             gameInfo.put(info1, arrayInfo[4]);
         }
         if (myGames.size() > 1) {
@@ -163,6 +167,7 @@ public class RefereeControllerGui extends ControllerGUI{
             String[] arrayInfo = str.split(",");
             changeText(info2, teamHomeName2, teamAwayName2, time2, date2, arrayInfo);
             gameInfo.put(info2, arrayInfo[4]);
+            gameTime.put(info2,arrayInfo[5]);
         }
 
 //
@@ -171,6 +176,7 @@ public class RefereeControllerGui extends ControllerGUI{
             String[] arrayInfo = str.split(",");
             changeText(info3, teamHomeName3, teamAwayName3, time3, date3, arrayInfo);
             gameInfo.put(info3, arrayInfo[4]);
+            gameTime.put(info2,arrayInfo[5]);
         }
 //
         if (myGames.size() > 3) {
@@ -178,6 +184,7 @@ public class RefereeControllerGui extends ControllerGUI{
             String[] arrayInfo = str.split(",");
             changeText(info4, teamHomeName4, teamAwayName4, time4, date4, arrayInfo);
             gameInfo.put(info4, arrayInfo[4]);
+            gameTime.put(info4,arrayInfo[5]);
         }
 //
         if (myGames.size() > 4) {
@@ -185,6 +192,7 @@ public class RefereeControllerGui extends ControllerGUI{
             String[] arrayInfo = str.split(",");
             changeText(info5, teamHomeName5, teamAwayName5, time5, date5, arrayInfo);
             gameInfo.put(info5, arrayInfo[4]);
+            gameTime.put(info5,arrayInfo[5]);
         }
     }
 //
@@ -208,22 +216,32 @@ public class RefereeControllerGui extends ControllerGUI{
 
     @FXML
     public void postEvent(Event event) {
-        try {
-            String str;
-            Button btn = ((Button) event.getSource());
-            if(btn.getText().equals("Add event")){
-                str = "AddEvent.fxml";
+        String dateLong =  gameTime.get(currPane);
+        Date d=new Date(Long.valueOf(dateLong).longValue());
+        long diffHours = (new Date(System.currentTimeMillis()).getTime() - d.getTime()) / (60 * 60 * 1000);
+        boolean midGame=false;
+        if (diffHours>=0 && diffHours <= 6.5 ) {
+            try {
+                String str;
+                Button btn = ((Button) event.getSource());
+                if(btn.getText().equals("Add event")){
+                    str = "AddEvent.fxml";
+                }
+                else{
+                    str = "AddEventReport.fxml";
+                }
+                Stage stage = new Stage();
+                ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(str));
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+            } catch (Exception e) {
             }
-            else{
-                str = "AddEventReport.fxml";
-            }
-            Stage stage = new Stage();
-            ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(str));
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
-        } catch (Exception e) {
+        }else{
+            showAlert("The game time doesn't allow you to change game events");
         }
+
+
     }
 
 
@@ -363,9 +381,6 @@ public class RefereeControllerGui extends ControllerGUI{
         eventMenu.getChildren().addAll(pane2);
         List<String> events = getListRequest(url+"/getEvents/"+gameInfo.get(currPane)+"/"+ username);
         for (String str : events) {
-            if (!(str.contains("Goal") || str.contains("Yellow") || str.contains("Red"))) {
-                continue;
-            }
             String[] output = str.split(",");
             String firstField;
             String secField;
@@ -389,24 +404,26 @@ public class RefereeControllerGui extends ControllerGUI{
             ImageView image = null;
 
             try {
-
                 if (output[0].contains("Goal")) {
                     image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\goal.png")));
-
                     image.setFitWidth(14);
                     image.setFitHeight(20);
-                    type="Goal";
                 } else if (output[0].contains("Yellow")) {
                     image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\yellowCard.png")));
-
                     image.setFitWidth(14);
                     image.setFitHeight(20);
+
                 } else if (output[0].contains("Red")) {
 
                     image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\redCard.png")));
+                    image.setFitWidth(14);
+                    image.setFitHeight(20);
+                }else{
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\referee.png")));
+                    image.setFitWidth(20);
+                    image.setFitHeight(20);
                 }
-                image.setFitWidth(14);
-                image.setFitHeight(20);
+
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -446,10 +463,7 @@ public class RefereeControllerGui extends ControllerGUI{
     }
 
     private void editEvent( String gameId, String type,String time, String playerName, String team,String eventID) throws IOException {
-
         Stage stage = new Stage();
-
-
             ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
             final Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("AddEvent.fxml"));
             stage.setScene(new Scene(root, 600, 400));
@@ -483,11 +497,12 @@ public class RefereeControllerGui extends ControllerGUI{
                 s= ((TextField) root.lookup("#timeEvent")).getText();
                 details.put("min",s);
 
-                final String status=postRequestHashMap(url+"/editEventAfterGame",details).getBody();
-                if(status.equals("fail")){
-                    showAlert("status");
+                 Object status=postRequestHashMap(url+"/editEventAfterGame",details);
+                if(status==null){
+                    showAlert("No permissions");
+                    stage.close();
                 }else{
-                    showAlert("success");
+                    showAlert("Edit success");
                     stage.close();
                     updateEvents();
                 }
@@ -498,6 +513,26 @@ public class RefereeControllerGui extends ControllerGUI{
     public void update(){}
 
 
+    public Date getCurrPaneTime() {
+        return new Date(Long.valueOf(gameTime.get(currPane)).longValue());
+    }
+    @FXML
+    public void AddEventReportOnAction() {
+        if (currPane == null) {
+            showAlert("Please choose a game");
+        } else {
+            ScreenController.getInstance().setRefereeControllerGui(this);
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("AddEventReport.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        }
+    }
 }
 
 

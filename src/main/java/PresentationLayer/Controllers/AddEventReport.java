@@ -7,6 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 
@@ -24,16 +27,21 @@ public class AddEventReport extends ControllerGUI{
             alert.show();
         }
         else {
-            String[] str = (ScreenController.getInstance().getGameInfo()).split(",");
+            RefereeControllerGui g=ScreenController.getInstance().getRefereeControllerGui();
+            String str = (g.gameInfo.get(ScreenController.getInstance().getRefereeControllerGui().currPane));
 //            RefereeController.getInstance().postEventReport(ScreenController.getInstance().userName, str[1], report.getText());
             HashMap<String,String> hashDetails= new HashMap<>();
             hashDetails.put("user_name",username);
-            hashDetails.put("game",str[1]);
+            hashDetails.put("game_id",str);
             hashDetails.put("report",report.getText());
 
-            postRequestHashMap("http://localHost:8090/api/referee/postEventReport",hashDetails);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Report added successfully");
-            alert.show();
+            HttpEntity<String> ans= postRequestHashMap("http://localHost:8090/api/referee/postEventReport",hashDetails);
+            if(((ResponseEntity<String>) ans).getStatusCode()== HttpStatus.ACCEPTED){
+                showAlert("Report added successfully");
+            }else{
+                showAlert("Something went wrong,try again");
+
+            }
             Stage stage = (Stage) btn.getScene().getWindow();
             stage.close();
         }
@@ -45,6 +53,7 @@ public class AddEventReport extends ControllerGUI{
         Stage stage  = (Stage) btn.getScene().getWindow();
         stage.close();
     }
+
 
 
 }
