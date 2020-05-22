@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 
@@ -47,6 +48,7 @@ public class AddEventController extends ControllerGUI {
     @FXML
             Button closeButton;
     String gameID;
+//    EventHandler<ActionEvent> oldEventAction =postEvent.getOnAction();
 
     @FXML
     public void initialize() {
@@ -90,13 +92,17 @@ public class AddEventController extends ControllerGUI {
             hashDetails.put("min", String.valueOf(time2));
             hashDetails.put("playerName", playerName);
             hashDetails.put("team", team);
+            ((Button) event.getSource()).getParent().getId();
+            ResponseEntity<String> ans = postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
 
-            postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
-            if (eventType.equals("Goal") || eventType.equals("YellowCard") || eventType.equals("RedCard")) {
+            if(ans==null || ans.getBody()==null ){
+                showAlert("Permissions issue, ask from System Manager new permissions");
+            }else if (eventType.equals("Goal") || eventType.equals("YellowCard") || eventType.equals("RedCard") ) {
                 ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score", gameID);
             }
-            showAlert("Event added successfully");
             closeAddEvent();
+//            ScreenController.getInstance().getRefereeControllerGui().updateEvents();
+
         }
 
 
@@ -171,6 +177,6 @@ public class AddEventController extends ControllerGUI {
         away.fire();
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-
+//        postEvent.setOnAction(oldEventAction);
     }
 }

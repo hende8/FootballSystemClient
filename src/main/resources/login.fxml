@@ -16,7 +16,7 @@
             <children>
                 <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../src/main/java/java/pictures/Vector.png" />
+                  <Image url="@../java/pictures/Vector.png" />
                </image>
                 </ImageView>
                 <Text layoutX="110.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in into your account" textAlignment="CENTER" wrappingWidth="325.77490234375">
@@ -62,7 +62,7 @@
         </Pane>
         <ImageView id="abc" fx:id="abc" fitHeight="562.0" fitWidth="751.0" layoutX="607.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <!--<Image url="@../java/pictures/football%201.png" />-->
+                <Image url="@../java/pictures/football 1.png" />
             </image>
         </ImageView>
       <Label fx:id="usernameValidate" layoutX="415.0" layoutY="270.0" prefHeight="56.0" prefWidth="7.0" text="*" textFill="RED" visible="false">

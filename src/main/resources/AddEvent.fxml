@@ -60,7 +60,7 @@
             <Font name="Open Sans Semibold" size="16.0" />
          </font>
       </Button>
-      <Text fill="#444444" layoutX="230.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Event" textAlignment="CENTER" wrappingWidth="148.77490234375">
+      <Text fx:id="addEventText" fill="#444444" layoutX="230.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Event" textAlignment="CENTER" wrappingWidth="148.77490234375">
          <font>
             <Font name="Open Sans Semibold" size="24.0" />
          </font>

@@ -132,7 +132,6 @@ public class ControllerGUI extends ImageView {
         ResponseEntity<String> responseEntity=null;
         try {
             responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-            responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
         }catch (Exception e){
             return null;
 
