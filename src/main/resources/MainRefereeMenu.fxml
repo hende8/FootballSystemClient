@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="35.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/Vector.png" />
+                  <Image url="@pictures/Vector.png" />
                </image>
             </ImageView>
             <Text fill="#02147a" layoutX="50.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Football System" textAlignment="CENTER" wrappingWidth="115.77490234375">
@@ -60,52 +60,52 @@
             </Text>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="23.0" layoutY="794.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/profilePic.png" />
+                  <Image url="@pictures/profilePic.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/men.png" />
+                  <Image url="@pictures/men.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/home.png" />
+                  <Image url="@pictures/home.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/ball.png" />
+                  <Image url="@pictures/ball.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/men.png" />
+                  <Image url="@pictures/user.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/referee.png" />
+                  <Image url="@pictures/referee.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/stad.png" />
+                  <Image url="@pictures/stad.png" />
                </image>
             </ImageView>
          </children></Pane>
       <Pane layoutX="228.0" layoutY="30.0" prefHeight="497.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
-            <Pane fx:id="info1" layoutX="15.0" layoutY="92.0" onMouseClicked="#showRightMenu" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;">
+            <Pane fx:id="info1" layoutX="15.0" layoutY="92.0" onMouseClicked="#showRightMenu" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamAway.png" />
+                        <Image url="@pictures/teamHome.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamHome.png" />
+                        <Image url="@pictures/teamAway.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="time1" fill="#444444" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18:00" wrappingWidth="70.77490234375">
@@ -139,12 +139,12 @@
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamAway.png" />
+                        <Image url="@pictures/teamHome.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamHome.png" />
+                        <Image url="@pictures/teamAway.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="time2" fill="#444444" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18:00" wrappingWidth="70.77490234375">
@@ -178,12 +178,12 @@
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamAway.png" />
+                        <Image url="@pictures/teamHome.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamHome.png" />
+                        <Image url="@pictures/teamAway.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="time3" fill="#444444" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18:00" wrappingWidth="70.77490234375">
@@ -217,12 +217,12 @@
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamAway.png" />
+                        <Image url="@pictures/teamHome.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamHome.png" />
+                        <Image url="@pictures/teamAway.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="time4" fill="#444444" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18:00" wrappingWidth="70.77490234375">
@@ -256,12 +256,12 @@
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamAway.png" />
+                        <Image url="@pictures/teamHome.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/teamHome.png" />
+                        <Image url="@pictures/teamAway.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="time5" fill="#444444" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18:00" wrappingWidth="70.77490234375">
@@ -308,16 +308,16 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="rightPane" layoutX="732.0" layoutY="30.0" prefHeight="840.0" prefWidth="678.0" style="-fx-background-color: white;">
+      <Pane fx:id="rightPane" layoutX="732.0" layoutY="30.0" prefHeight="840.0" prefWidth="678.0" style="-fx-background-color: white;" visible="false">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/teamAway.png" />
+                  <Image url="@pictures/teamHome.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="458.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/teamHome.png" />
+                  <Image url="@pictures/teamAway.png" />
                </image>
             </ImageView>
             <Text fx:id="teamNameHome" fill="#444444" layoutX="127.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chelsea" textAlignment="CENTER" wrappingWidth="86.77490234375">
@@ -344,7 +344,7 @@
                <children>
                   <ImageView fitHeight="34.0" fitWidth="100.0" layoutX="-2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/liveGame.png" />
+                        <Image url="@pictures/liveGame.png" />
                      </image>
                   </ImageView>
                   <Text fill="#27ae60" layoutX="21.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIVE" textAlignment="CENTER" wrappingWidth="54.77490234375">
@@ -356,7 +356,7 @@
             </Pane>
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="100.0" layoutY="758.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/Star.png" />
+                  <Image url="@pictures/Star.png" />
                </image>
             </ImageView>
             <ScrollPane layoutX="39.0" layoutY="266.0" prefHeight="400.0" prefWidth="622.0" style="-fx-background-radius: 10; -fx-border-color: white;">
@@ -374,7 +374,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../java/pictures/report.png" />
+                        <Image url="@pictures/report.png" />
                      </image>
                   </ImageView>
                </graphic>

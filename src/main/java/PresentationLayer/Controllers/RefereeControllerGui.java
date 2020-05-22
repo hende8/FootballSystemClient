@@ -391,19 +391,19 @@ public class RefereeControllerGui extends ControllerGUI{
             try {
 
                 if (output[0].contains("Goal")) {
-                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\goal.png")));
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\goal.png")));
 
                     image.setFitWidth(14);
                     image.setFitHeight(20);
                     type="Goal";
                 } else if (output[0].contains("Yellow")) {
-                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\yellowCard.png")));
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\yellowCard.png")));
 
                     image.setFitWidth(14);
                     image.setFitHeight(20);
                 } else if (output[0].contains("Red")) {
 
-                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\redCard.png")));
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\redCard.png")));
                 }
                 image.setFitWidth(14);
                 image.setFitHeight(20);
@@ -434,6 +434,9 @@ public class RefereeControllerGui extends ControllerGUI{
 
             pane2 = new Pane();
             pane2.setPrefWidth(600);
+
+
+
             pane2.setPrefHeight(15);
             pane2.setStyle("-fx-background-color:  White ; -fx-background-radius: 10 ;");
 
