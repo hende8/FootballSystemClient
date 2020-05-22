@@ -115,7 +115,7 @@
                </image>
             </ImageView>
          </children></Pane>
-      <Pane fx:id="policyLeaguePane" layoutX="228.0" layoutY="30.0" prefHeight="497.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <Pane fx:id="policyLeaguePane" layoutX="228.0" layoutY="30.0" prefHeight="497.0" prefWidth="482.0" style="-fx-background-color: white; -fx-background-radius: 10;" visible="false">
          <children>
             <Button fx:id="doneButton" layoutX="121.0" layoutY="420.0" mnemonicParsing="false" onAction="#doneButtonOnAction" onMouseEntered="#OnHover" onMouseExited="#OnExit" onMousePressed="#OnPress" onMouseReleased="#OnExit" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: #2060E4; -fx-background-radius: 10;" text="Done" textFill="WHITE">
                <font>

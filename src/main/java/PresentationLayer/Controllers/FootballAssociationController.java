@@ -148,7 +148,7 @@ public class FootballAssociationController extends ControllerGUI {
             hashDetails.put("team_name",teamNameTextField.getText());
             postRequestHashMap(url+"/createTeam",hashDetails);
             showAlert("A new team registered to the system successfully");
-            teamNameTextField.setText(teamNameTextField.getPromptText());
+            teamNameTextField.clear();
             teamOwnerComboBox.valueProperty().set(teamOwnerComboBox.getPromptText());
         }
     }

@@ -5,15 +5,19 @@ package PresentationLayer.Controllers;
 //import System.Exeptions.NoRefereePermissions;
 //import System.Exeptions.NoSuchEventException;
 
-import FootballSystem.StageListener;
 import PresentationLayer.ScreenController;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -23,6 +27,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.http.ResponseEntity;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -181,11 +187,6 @@ public class RefereeControllerGui extends ControllerGUI{
             gameInfo.put(info5, arrayInfo[4]);
         }
     }
-    @FXML
-    public void handleLogOutttt() throws Exception {
-        System.out.println(getStringRequest("http://localhost:8090/api/user/logOut/"+username).getBody());
-        StageListener.changeScene(username,"login.fxml");
-    }
 //
     private void changeText(Pane info, Text teamHomeName, Text teamAwayName, Text time, Text date, String[] arrayInfo) {
         info.setVisible(true);
@@ -331,10 +332,6 @@ public class RefereeControllerGui extends ControllerGUI{
         logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
     }
 
-    @FXML
-    public void handleLogOut() throws Exception {
-//        ScreenController.getInstance().changeSenceLogOut();
-    }
 
     @FXML
     public void handleMouseClickedPass(Event event) {
@@ -356,6 +353,7 @@ public class RefereeControllerGui extends ControllerGUI{
     }
 
     public void updateEvents() {
+        String type="";
         eventMenu.getChildren().removeAll(eventMenu.getChildren());
         Pane pane2 = new Pane();
         pane2.setPrefWidth(600);
@@ -365,17 +363,16 @@ public class RefereeControllerGui extends ControllerGUI{
         eventMenu.getChildren().addAll(pane2);
         List<String> events = getListRequest(url+"/getEvents/"+gameInfo.get(currPane)+"/"+ username);
         for (String str : events) {
-            if(!(str.contains("Goal")||str.contains("Yellow")||str.contains("Red"))){
+            if (!(str.contains("Goal") || str.contains("Yellow") || str.contains("Red"))) {
                 continue;
             }
             String[] output = str.split(",");
             String firstField;
             String secField;
-            if(teamNameAway.getText().equals(output[3])){
+            if (teamNameAway.getText().equals(output[3])) {
                 firstField = output[1];
                 secField = output[2];
-            }
-            else{
+            } else {
                 firstField = output[2];
                 secField = output[1];
             }
@@ -384,52 +381,115 @@ public class RefereeControllerGui extends ControllerGUI{
             pane.setPrefHeight(50);
             pane.setStyle("-fx-background-color:  #F6F6F4 ; -fx-background-radius: 10 ;");
 
-            Text text = new Text(firstField);
-            text.setLayoutX(136);
-            text.setLayoutY(30);
-            text.setFill(Color.web("#444444"));
-            text.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
-            ImageView image;
-            if (output[0].contains("Goal")) {
-//                image = new ImageView(new Image("\\pictures\\goal.png"));
-////                image = new ImageView(new ImageIcon(this.getClass().getResource("/images/bell-icon16.png")).getImage());
-//                image.setFitWidth(20);
-//                image.setFitHeight(20);
-            } else if (output[0].contains("YellowCard")) {
-//                image = new ImageView(new Image("\\pictures\\yellowCard.png"));
-//                image.setFitWidth(14);
-//                image.setFitHeight(20);
-            } else if (output[0].contains("RedCard")) {
-//                System.out.println(this.getClass().getResource("/pictures/redCard.png").toString());
-                System.out.println("Working Directory = " + System.getProperty("user.dir"));
+            Text playerName = new Text(firstField);
+            playerName.setLayoutX(136);
+            playerName.setLayoutY(30);
+            playerName.setFill(Color.web("#444444"));
+            playerName.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
+            ImageView image = null;
 
-//                Image o=new Image("System.getProperty(\"user.dir\")+\\src\\main\\java\\pictures\\redCard.png");
-//                image = new ImageView(new Image("\\src\\main\\java\\pictures\\redCard.png"));
-//                image.setFitWidth(14);
-//                image.setFitHeight(20);
-            } else {
-                break;
+            try {
+
+                if (output[0].contains("Goal")) {
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\goal.png")));
+
+                    image.setFitWidth(14);
+                    image.setFitHeight(20);
+                    type="Goal";
+                } else if (output[0].contains("Yellow")) {
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\yellowCard.png")));
+
+                    image.setFitWidth(14);
+                    image.setFitHeight(20);
+                } else if (output[0].contains("Red")) {
+
+                    image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\pictures\\redCard.png")));
+                }
+                image.setFitWidth(14);
+                image.setFitHeight(20);
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
 
-//            image.setLayoutX(314);
-//            image.setLayoutY(13);
-
-            Text text2 = new Text(secField);
-            text2.setLayoutX(394);
-            text2.setLayoutY(30);
-            text2.setFill(Color.web("#444444"));
-            text2.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
-
-//            pane.getChildren().addAll(text, image, text2);
+            image.setLayoutX(314);
+            image.setLayoutY(13);
+            Text time = new Text(secField);
+            time.setLayoutX(394);
+            time.setLayoutY(30);
+            time.setFill(Color.web("#444444"));
+            time.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
+            final Button temp = new Button("edit");
+            temp.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    try {
+                        editEvent(gameInfo.get(currPane),output[0],output[1]/*time*/,output[2]/*player*/,output[3]/*team*/,output[4]);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+            pane.getChildren().addAll(temp,playerName, image, time);
 
             pane2 = new Pane();
             pane2.setPrefWidth(600);
             pane2.setPrefHeight(15);
             pane2.setStyle("-fx-background-color:  White ; -fx-background-radius: 10 ;");
 
+
             eventMenu.getChildren().addAll(pane, pane2);
         }
+    }
+
+    private void editEvent( String gameId, String type,String time, String playerName, String team,String eventID) throws IOException {
+
+        Stage stage = new Stage();
+
+
+            ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
+            final Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("AddEvent.fxml"));
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+            Text lblData = (Text) root.lookup("#addEventText");
+            if (lblData!=null) lblData.setText("Edit event");
+
+
+
+        Button b=(Button)root.lookup("#post");
+        EventHandler<ActionEvent> old =b.getOnAction();
+        b.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HashMap<String,String> details=new HashMap<>();
+                details.put("user_name",username);
+                details.put("game",gameId);
+                ComboBox<String> ss= ((ComboBox<String>) root.lookup("#comboEventBox"));
+                String s= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
+                details.put("type",s);
+                s= ((TextField) root.lookup("#playerNameText")).getText();
+                details.put("playerName",s);
+                String team1="";
+                if (((RadioButton) root.lookup("#home")).isSelected()) {
+                    team1 = teamNameHome.getText();
+                } else if (((RadioButton) root.lookup("#away")).isSelected()) {
+                    team1 = teamNameAway.getText();
+                }
+                details.put("team",team1);
+                details.put("event_id",eventID);
+                s= ((TextField) root.lookup("#timeEvent")).getText();
+                details.put("min",s);
+
+                final String status=postRequestHashMap(url+"/editEventAfterGame",details).getBody();
+                if(status.equals("fail")){
+                    showAlert("status");
+                }else{
+                    showAlert("success");
+                    stage.close();
+                    updateEvents();
+                }
+            }
+        });
     }
 
     public void update(){}
