@@ -152,7 +152,6 @@ public class RefereeControllerGui extends ControllerGUI{
     public void initialize() {
         gameInfo = new HashMap<>();
         gameTime = new HashMap<>();
-        userInfo.setText(ScreenController.getInstance().userName);
         String name = username;
         List<String> myGames = getListRequest(url+"/getMyGames/"+name);
         if (myGames.size() > 0) {
