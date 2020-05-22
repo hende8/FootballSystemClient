@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="13.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/Vector.png" />
+                  <Image url="@pictures/Vector.png" />
                </image>
             </ImageView>
             <Text fill="#02147a" layoutX="56.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Football System" textAlignment="CENTER" wrappingWidth="115.77490234375">
@@ -25,11 +25,11 @@
                   <Font name="Open Sans Semibold" size="16.0" />
                </font>
             </Text>
-            <Button fx:id="homeBtn" layoutX="18.0" layoutY="115.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-text-fill: #444444;" text="Home" textFill="WHITE">
+            <Button fx:id="homeBtn" layoutX="18.0" layoutY="115.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-text-fill: #444444;" text="Home" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
-            <Button fx:id="gamesBtn" layoutX="18.0" layoutY="159.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: black; -fx-background-color: white;" text=" Games">
+            <Button fx:id="gamesBtn" layoutX="18.0" layoutY="159.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: black; -fx-background-color: white;" text="Games">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
@@ -37,15 +37,15 @@
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
-            <Button fx:id="playersBtn" layoutX="18.0" layoutY="240.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text="Players">
+            <Button fx:id="playersBtn" layoutX="18.0" layoutY="240.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text=" Players">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
-            <Button fx:id="refereeBtn" layoutX="18.0" layoutY="283.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text=" Referee">
+            <Button fx:id="refereeBtn" layoutX="18.0" layoutY="283.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text="  Referee" textAlignment="CENTER">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
-            <Button fx:id="stadiumsBtn" layoutX="18.0" layoutY="326.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text="    Stadiums">
+            <Button fx:id="stadiumsBtn" layoutX="18.0" layoutY="326.0" mnemonicParsing="false" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white;" text="     Stadiums">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font></Button>
@@ -61,57 +61,57 @@
             </Text>
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="23.0" layoutY="794.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/profilePic.png" />
+                  <Image url="@pictures/profilePic.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/men.png" />
+                  <Image url="@pictures/men.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/home.png" />
+                  <Image url="@pictures/home.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/ball.png" />
+                  <Image url="@pictures/goal.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/men.png" />
+                  <Image url="@pictures/user.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/referee.png" />
+                  <Image url="@pictures/referee.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/stad.png" />
+                  <Image url="@pictures/stad.png" />
                </image>
             </ImageView>
-            <Button fx:id="createTeamsBtn1" layoutX="18.0" layoutY="364.0" mnemonicParsing="false" onAction="#setPolicyButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text="  League Policy">
+            <Button fx:id="createTeamsBtn1" layoutX="18.0" layoutY="364.0" mnemonicParsing="false" onAction="#setPolicyButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="167.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text=" Leagues" textAlignment="CENTER">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="createTeamBtn" layoutX="18.0" layoutY="404.0" mnemonicParsing="false" onAction="#createTeamButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text="New team">
+            <Button fx:id="createTeamBtn" layoutX="18.0" layoutY="404.0" mnemonicParsing="false" onAction="#createTeamButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="160.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text="     New team" textAlignment="RIGHT">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font>
             </Button>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="35.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/stad.png" />
+                  <Image url="@pictures/leagu.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="33.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../java/pictures/men.png" />
+                  <Image url="@pictures/men.png" />
                </image>
             </ImageView>
          </children></Pane>

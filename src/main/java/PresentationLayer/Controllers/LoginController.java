@@ -10,6 +10,7 @@ package PresentationLayer.Controllers;
 
 import FootballSystem.StageListener;
 import FootballSystem.bootApp;
+import PresentationLayer.ScreenController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -52,6 +53,12 @@ public class LoginController extends ControllerGUI{
         public void handleLogin() throws Exception {
         usernameValidate.setVisible(false);
         passValidate.setVisible(false);
+        if(userName.getText().equals("")) {
+            nameImg.setVisible(true);
+        }
+        if(userPass.getText().equals("")) {
+            passImg.setVisible(true);
+        }
         if(validateParameters()){
             String userN = userName.getText();
             String login = "http://localhost:8090/api/user/login";
@@ -61,7 +68,14 @@ public class LoginController extends ControllerGUI{
             ResponseEntity<String> responseEntity = postRequestHashMap(login,hashmap);
             if(responseEntity==null){
                 showAlert("Something went wrong...try again!");
+                if(userName.getText().equals("")) {
+                    nameImg.setVisible(true);
+                }
+                if(userPass.getText().equals("")) {
+                    passImg.setVisible(true);
+                }
             }else {
+                ScreenController.getInstance().userName = userName.getText();
                 username=userName.getText();
                 if (responseEntity.getBody().equals("1")) {//fan
                     sendInfo();
