@@ -218,7 +218,6 @@ public class RefereeControllerGui extends ControllerGUI{
         String dateLong =  gameTime.get(currPane);
         Date d=new Date(Long.valueOf(dateLong).longValue());
         long diffHours = (new Date(System.currentTimeMillis()).getTime() - d.getTime()) / (60 * 60 * 1000);
-        boolean midGame=false;
         if (diffHours>=0 && diffHours <= 6.5 ) {
             try {
                 String str;
@@ -383,9 +382,11 @@ public class RefereeControllerGui extends ControllerGUI{
             String[] output = str.split(",");
             String firstField;
             String secField;
+            boolean home=false;
             if (teamNameAway.getText().equals(output[3])) {
                 firstField = output[1];
                 secField = output[2];
+                home=true;
             } else {
                 firstField = output[2];
                 secField = output[1];
@@ -446,8 +447,12 @@ public class RefereeControllerGui extends ControllerGUI{
                     }
                 }
             });
-            pane.getChildren().addAll(temp,playerName, image, time);
 
+            if(home){
+                pane.getChildren().addAll(temp,playerName, image, time);
+            }else{
+                pane.getChildren().addAll(temp,time, image, playerName);
+            }
             pane2 = new Pane();
             pane2.setPrefWidth(600);
 
