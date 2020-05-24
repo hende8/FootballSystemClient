@@ -109,7 +109,7 @@
                   <Image url="@pictures/men.png" />
                </image>
             </ImageView>
-            <Text fx:id="userNameLabel" fill="#02147a" layoutX="59.0" layoutY="812.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="68.9999771118164">
+            <Text fx:id="userNameLabel" fill="#02147a" layoutX="55.0" layoutY="812.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="116.00002527236938">
                <font>
                   <Font name="Open Sans Semibold" size="16.0" />
                </font>

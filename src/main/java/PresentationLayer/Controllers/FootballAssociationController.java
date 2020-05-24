@@ -1,10 +1,12 @@
 package PresentationLayer.Controllers;
 
-import PresentationLayer.ScreenController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
@@ -54,7 +56,6 @@ public class FootballAssociationController extends ControllerGUI {
     List<String> leagues;
     String url="http://localHost:8090/api/FootballAssociation";
     public void initialize() {
-        userInfo.setText(ScreenController.getInstance().userName);
         leagues=getListRequest(url+"/getAllLeague");
         for (String l : leagues) {
             leagueComboBox.getItems().add(l);
