@@ -1,6 +1,6 @@
 package PresentationLayer.Controllers;
 
-//import PresentationLayer.ScreenController;
+//import PresentationLayer.Controllers.ScreenController;
 //import ServiceLayer.*;
 //
 //import System.Exeptions.NoSuchAUserNamedException;
@@ -9,7 +9,6 @@ package PresentationLayer.Controllers;
 //import System.Users.User;
 
 import FootballSystem.StageListener;
-import PresentationLayer.ScreenController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
