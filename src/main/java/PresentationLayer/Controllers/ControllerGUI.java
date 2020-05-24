@@ -163,6 +163,4 @@ public class ControllerGUI extends ImageView {
         return restTemplate.exchange(url, HttpMethod.GET, e , String.class);
 
     }
-
-
 }
