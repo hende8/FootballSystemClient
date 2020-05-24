@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -87,19 +88,34 @@ public class AddEventController extends ControllerGUI {
             }
             HashMap<String, String> hashDetails = new HashMap<>();
             hashDetails.put("user_name", username);
-            hashDetails.put("game", gameID);
+            hashDetails.put("game", ScreenController.getInstance().getRefereeControllerGui().gameInfo.get(ScreenController.getInstance().getRefereeControllerGui().currPane));
             hashDetails.put("type", eventType);
             hashDetails.put("min", String.valueOf(time2));
             hashDetails.put("playerName", playerName);
             hashDetails.put("team", team);
             ((Button) event.getSource()).getParent().getId();
-            ResponseEntity<String> ans = postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
+            long time=ScreenController.getInstance().getRefereeControllerGui().getCurrPaneTime().getTime();
+            long diffHours = (new Date(System.currentTimeMillis()).getTime() - time) / (60 * 60 * 1000);
+            if (diffHours>=0 && diffHours <= 6.5 ) {
+                ResponseEntity<String> ans=null;
+                if(diffHours<=1.5){
+                     ans = postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
 
-            if(ans==null || ans.getBody()==null ){
-                showAlert("Permissions issue, ask from System Manager new permissions");
-            }else if (eventType.equals("Goal") || eventType.equals("YellowCard") || eventType.equals("RedCard") ) {
-                ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score", gameID);
+                }else{
+                    ans = postRequestHashMap("http://localHost:8090/api/referee/addEventAfterGame", hashDetails);
+                }
+                if(ans==null || ans.getBody()==null ){
+                    showAlert("Permissions issue, ask from System Manager new permissions");
+                }
+                else {
+                    ScreenController.getInstance().getRefereeControllerGui().updateEvent("Score", gameID);
+                }
+            }else{
+                showAlert("The game time doesn't allow you to change game events");
+                closeAddEvent();
+
             }
+
             closeAddEvent();
 //            ScreenController.getInstance().getRefereeControllerGui().updateEvents();
 

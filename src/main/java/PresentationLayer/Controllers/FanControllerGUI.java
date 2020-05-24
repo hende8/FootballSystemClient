@@ -2,9 +2,7 @@ package PresentationLayer.Controllers;
 
 import FootballSystem.bootApp;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -15,8 +13,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.util.List;
-
-//import java.awt.*;
 
 
 public class FanControllerGUI extends ControllerGUI {
@@ -67,15 +63,15 @@ public class FanControllerGUI extends ControllerGUI {
 
     }
 
-    @FXML
-    public void mouseInL(){
-        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
-    }
-
-    @FXML
-    public void mouseOutL(){
-        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
-    }
+//    @FXML
+//    public void mouseInL(){
+//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
+//    }
+//
+//    @FXML
+//    public void mouseOutL(){
+//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
+//    }
 
 
     public void removeAlert(Button bRemove) {

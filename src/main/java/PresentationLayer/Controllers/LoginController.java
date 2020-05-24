@@ -9,11 +9,8 @@ package PresentationLayer.Controllers;
 //import System.Users.User;
 
 import FootballSystem.StageListener;
-import FootballSystem.bootApp;
 import PresentationLayer.ScreenController;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
