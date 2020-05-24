@@ -70,7 +70,7 @@
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@pictures/ball.png" />
+                  <Image url="@pictures/goal.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="50.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +88,7 @@
                   <Image url="@pictures/stad.png" />
                </image>
             </ImageView>
-            <Text fx:id="userNameLabel" fill="#02147a" layoutX="59.0" layoutY="812.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="70.77491283416748">
+            <Text fx:id="userNameLabel" fill="#02147a" layoutX="55.0" layoutY="812.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="116.00002527236938">
                <font>
                   <Font name="Open Sans Semibold" size="16.0" />
                </font>
