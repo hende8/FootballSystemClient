@@ -61,7 +61,7 @@ public class LoginController extends ControllerGUI{
         }
         if(validateParameters()){
             String userN = userName.getText();
-            String login = "http://localhost:8090/api/user/login";
+            String login = "http://132.72.65.99:8090/api/user/login";
             HashMap<String, String> hashmap = new HashMap();
             hashmap.put("password", userPass.getText());
             hashmap.put("user_name", userName.getText());
@@ -115,7 +115,7 @@ public class LoginController extends ControllerGUI{
         String myIP ="localhost";
         String myPort = "8092";
         String userName = username;//ScreenController.getInstance().userName;
-        String addListener = "http://localhost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
+        String addListener = "http://132.72.65.99:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
