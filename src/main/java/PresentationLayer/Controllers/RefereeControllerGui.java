@@ -436,12 +436,15 @@ public class RefereeControllerGui extends ControllerGUI{
             time.setLayoutY(30);
             time.setFill(Color.web("#444444"));
             time.setStyle("-fx-font-size: 20px;-fx-font-family:Open Sans");
-            final Button temp = new Button("edit");
+            final Button temp = new Button("Edit");
             temp.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     try {
                         editEvent(gameInfo.get(currPane),output[0],output[1]/*time*/,output[2]/*player*/,output[3]/*team*/,output[4]);
+//                        if(output[0].equals("Goal")) {
+//                            updateEvent("Score", gameInfo.get(currPane));
+//                        }
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -455,13 +458,8 @@ public class RefereeControllerGui extends ControllerGUI{
             }
             pane2 = new Pane();
             pane2.setPrefWidth(600);
-
-
-
             pane2.setPrefHeight(15);
             pane2.setStyle("-fx-background-color:  White ; -fx-background-radius: 10 ;");
-
-
             eventMenu.getChildren().addAll(pane, pane2);
         }
     }
@@ -483,11 +481,15 @@ public class RefereeControllerGui extends ControllerGUI{
             @Override
             public void handle(ActionEvent event) {
                 HashMap<String,String> details=new HashMap<>();
+                details.put("old_team",team);
+                details.put("old_eventType",type);
                 details.put("user_name",username);
+                String oldType=type;
                 details.put("game",gameId);
                 ComboBox<String> ss= ((ComboBox<String>) root.lookup("#comboEventBox"));
                 String s= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
                 details.put("type",s);
+                String type=s;
                 s= ((TextField) root.lookup("#playerNameText")).getText();
                 details.put("playerName",s);
                 String team1="";
@@ -501,12 +503,16 @@ public class RefereeControllerGui extends ControllerGUI{
                 s= ((TextField) root.lookup("#timeEvent")).getText();
                 details.put("min",s);
 
+
                  Object status=postRequestHashMap(url+"/editEventAfterGame",details);
                 if(status==null){
                     showAlert("No permissions");
                     stage.close();
                 }else{
                     showAlert("Edit success");
+                    if(type.equals("Goal") || oldType.equals("Goal")){
+                        updateEvent("Score",gameId);
+                    }
                     stage.close();
                     updateEvents();
                 }
