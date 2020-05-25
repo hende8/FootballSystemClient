@@ -110,7 +110,7 @@ public class RefereeControllerGui extends ControllerGUI{
     Button postEvent;
     @FXML
     VBox eventMenu;
-    String url="http://localhost:8090/api/referee";
+    String url="http://132.72.65.99:8090/api/referee";
 
     /**
      * initialize a referee controller
@@ -121,44 +121,46 @@ public class RefereeControllerGui extends ControllerGUI{
         gameTime = new HashMap<>();
         String name = username;
         List<String> myGames = getListRequest(url+"/getMyGames/"+name);
-        if (myGames.size() > 0) {
-            String str = myGames.get(0);
-            String[] arrayInfo = str.split(",");
-            changeText(info1, teamHomeName1, teamAwayName1, time1, date1, arrayInfo);
-            gameTime.put(info1,arrayInfo[5]);
-            gameInfo.put(info1, arrayInfo[4]);
-        }
-        if (myGames.size() > 1) {
-            String str = myGames.get(1);
-            String[] arrayInfo = str.split(",");
-            changeText(info2, teamHomeName2, teamAwayName2, time2, date2, arrayInfo);
-            gameInfo.put(info2, arrayInfo[4]);
-            gameTime.put(info2,arrayInfo[5]);
-        }
+        if(myGames!=null) {
+            if (myGames.size() > 0) {
+                String str = myGames.get(0);
+                String[] arrayInfo = str.split(",");
+                changeText(info1, teamHomeName1, teamAwayName1, time1, date1, arrayInfo);
+                gameTime.put(info1, arrayInfo[5]);
+                gameInfo.put(info1, arrayInfo[4]);
+            }
+            if (myGames.size() > 1) {
+                String str = myGames.get(1);
+                String[] arrayInfo = str.split(",");
+                changeText(info2, teamHomeName2, teamAwayName2, time2, date2, arrayInfo);
+                gameInfo.put(info2, arrayInfo[4]);
+                gameTime.put(info2, arrayInfo[5]);
+            }
 
 //
-        if (myGames.size() > 2) {
-            String str = myGames.get(2);
-            String[] arrayInfo = str.split(",");
-            changeText(info3, teamHomeName3, teamAwayName3, time3, date3, arrayInfo);
-            gameInfo.put(info3, arrayInfo[4]);
-            gameTime.put(info2,arrayInfo[5]);
-        }
+            if (myGames.size() > 2) {
+                String str = myGames.get(2);
+                String[] arrayInfo = str.split(",");
+                changeText(info3, teamHomeName3, teamAwayName3, time3, date3, arrayInfo);
+                gameInfo.put(info3, arrayInfo[4]);
+                gameTime.put(info2, arrayInfo[5]);
+            }
 //
-        if (myGames.size() > 3) {
-            String str = myGames.get(3);
-            String[] arrayInfo = str.split(",");
-            changeText(info4, teamHomeName4, teamAwayName4, time4, date4, arrayInfo);
-            gameInfo.put(info4, arrayInfo[4]);
-            gameTime.put(info4,arrayInfo[5]);
-        }
+            if (myGames.size() > 3) {
+                String str = myGames.get(3);
+                String[] arrayInfo = str.split(",");
+                changeText(info4, teamHomeName4, teamAwayName4, time4, date4, arrayInfo);
+                gameInfo.put(info4, arrayInfo[4]);
+                gameTime.put(info4, arrayInfo[5]);
+            }
 //
-        if (myGames.size() > 4) {
-            String str = myGames.get(4);
-            String[] arrayInfo = str.split(",");
-            changeText(info5, teamHomeName5, teamAwayName5, time5, date5, arrayInfo);
-            gameInfo.put(info5, arrayInfo[4]);
-            gameTime.put(info5,arrayInfo[5]);
+            if (myGames.size() > 4) {
+                String str = myGames.get(4);
+                String[] arrayInfo = str.split(",");
+                changeText(info5, teamHomeName5, teamAwayName5, time5, date5, arrayInfo);
+                gameInfo.put(info5, arrayInfo[4]);
+                gameTime.put(info5, arrayInfo[5]);
+            }
         }
     }
 
