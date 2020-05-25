@@ -22,34 +22,31 @@ public class ControllerGUI extends ImageView {
     Pane footballAssociationMenuPane;
     @FXML
     Button currentButton;
-
     @FXML
     Button homeBtn;
-
     @FXML
     Button gamesBtn;
-
     @FXML
     Button stadiumsBtn;
-
     @FXML
     Button teamsBtn;
-
     @FXML
     Button playersBtn;
-
     @FXML
     Button refereeBtn;
     @FXML
     Button createTeamsBtn;
-
     @FXML
     Text userInfo;
-
     @FXML
     Button logOutBtn;
     @FXML
     Button postEvent;
+
+    /**
+     * button pushed in the main buttons
+     * @param btn
+     */
     protected void barButtonPushed(Button btn) {
         btn.setOnMouseExited(null);
         if(currentButton!=null){
@@ -58,9 +55,14 @@ public class ControllerGUI extends ImageView {
         }
         currentButton=btn;
     }
+
+    /**
+     * show alert information
+     * @param msg
+     */
     protected void showAlert(String msg){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
+            alert.setTitle("Information");
             alert.setHeaderText(null);
             alert.setContentText(msg);
             alert.showAndWait();
@@ -88,6 +90,11 @@ public class ControllerGUI extends ImageView {
     public void mouseOutL() {
         logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
     }
+
+    /**
+     * log out a user
+     * @throws Exception
+     */
     @FXML
     public void handleLogOut() throws Exception {
         getStringRequest("http://localhost:8090/api/user/logOut/"+username);
@@ -123,6 +130,12 @@ public class ControllerGUI extends ImageView {
         ((Button)e.getSource()).setStyle("-fx-background-color: #000F64 ; -fx-background-radius:10");
     }
 
+    /**
+     * a post request to server
+     * @param url
+     * @param hashmap hash map with a details to send
+     * @return
+     */
     public ResponseEntity<String> postRequestHashMap(String url, HashMap hashmap) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -139,6 +152,11 @@ public class ControllerGUI extends ImageView {
         return responseEntity ;
     }
 
+    /**
+     * get list request from the server
+     * @param url
+     * @return
+     */
 
     public List<String> getListRequest(String url) {
         RestTemplate restTemplate = new RestTemplate();
@@ -154,6 +172,12 @@ public class ControllerGUI extends ImageView {
         }
         return responseEntity ;
     }
+
+    /**
+     * get a String request
+     * @param url
+     * @return
+     */
     public ResponseEntity<String> getStringRequest(String url){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

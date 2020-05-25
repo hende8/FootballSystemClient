@@ -19,38 +19,31 @@ public class AddEventController extends ControllerGUI {
 
     @FXML
     AnchorPane anchorPane;
-
     @FXML
     TextField playerNameText;
-
     @FXML
     TextField timeEvent;
-
     @FXML
     Text teamNameHome;
-
     @FXML
     Text teamNameAway;
-
     @FXML
     RadioButton home;
-
     @FXML
     RadioButton away;
-
     @FXML
-            Label eventTypeValidate;
+    Label eventTypeValidate;
     @FXML
-            Label minuteValidate;
+    Label minuteValidate;
     @FXML
-            Label playerNameValidate;
-
+    Label playerNameValidate;
     @FXML
-            Button closeButton;
+    Button closeButton;
     String gameID;
-//    EventHandler<ActionEvent> oldEventAction =postEvent.getOnAction();
-
     @FXML
+    /**
+     * initialize the window
+     */
     public void initialize() {
         eventTypeValidate.setVisible(false);
         minuteValidate.setVisible(false);
@@ -62,6 +55,7 @@ public class AddEventController extends ControllerGUI {
         gameID = str[1];
     }
 
+
     @FXML
     public void clickHomeRadio(){
         away.setSelected(false);
@@ -71,7 +65,11 @@ public class AddEventController extends ControllerGUI {
         home.setSelected(false);
     }
 
-
+    /**
+     * post event send a request to server
+     * check if the time allow to the referee to add a new event
+     * @param event
+     */
     @FXML
     public void postEvent(Event event) {
         Button btn = ((Button) event.getSource());
@@ -116,14 +114,16 @@ public class AddEventController extends ControllerGUI {
             }
 
             closeAddEvent();
-//            ScreenController.getInstance().getRefereeControllerGui().updateEvents();
 
         }
 
 
         }
 
-
+    /**
+     * validation of the add event fields
+     * @return
+     */
     private boolean addEventValidate() {
         eventTypeValidate.setVisible(false);
         minuteValidate.setVisible(false);
@@ -159,6 +159,11 @@ public class AddEventController extends ControllerGUI {
 
     }
 
+    /**
+     * check validation of player name
+     * @param str
+     * @return
+     */
     private boolean checkPlayerName(String str){
         char [] chars = str.toCharArray();
         for(char c : chars){
@@ -168,6 +173,11 @@ public class AddEventController extends ControllerGUI {
         return true;
     }
 
+    /**
+     * check validation of minute in the game
+     * @param str
+     * @return
+     */
     private boolean checkMin(String str){
         char [] chars = str.toCharArray();
         if(chars.length > 3 || chars.length < 1)
@@ -181,6 +191,7 @@ public class AddEventController extends ControllerGUI {
         }
         return true;
     }
+
     @FXML
     public void closeAddEvent(){
         eventTypeValidate.setVisible(false);
@@ -192,6 +203,5 @@ public class AddEventController extends ControllerGUI {
         away.fire();
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-//        postEvent.setOnAction(oldEventAction);
     }
 }

@@ -26,7 +26,7 @@ public class StageListener extends ControllerGUI implements ApplicationListener<
     private ApplicationContext ac;
     private  static Stage primaryStage;
     public StageListener(@Value("classpath:/login.fxml") org.springframework.core.io.Resource r,ApplicationContext ac){
-        title="hole";
+        title="";
         fxml=r;
         this.ac=ac;
         primaryStage=null;
@@ -47,6 +47,12 @@ public class StageListener extends ControllerGUI implements ApplicationListener<
         }
     }
 
+    /**
+     * switch between scenes
+     * @param userName
+     * @param fxml
+     * @throws Exception
+     */
         public static void changeScene(String userName, String fxml) throws Exception{
         Parent root = FXMLLoader.load(StageListener.class.getClassLoader().getResource(fxml));
         Scene scene=null;

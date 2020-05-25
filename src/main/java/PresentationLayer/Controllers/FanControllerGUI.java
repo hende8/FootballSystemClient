@@ -18,17 +18,16 @@ import java.util.List;
 public class FanControllerGUI extends ControllerGUI {
     @FXML
     TextFlow textAlert;
-
     @FXML
     Button logOutBtn;
-
     @FXML
     VBox eventMenu;
-
     @FXML
     ScrollPane scrollAlerts;
 
-
+    /**
+     * initialize the controller
+     */
     @FXML
     public void initialize() {
         bootApp.addListener(this);
@@ -41,6 +40,10 @@ public class FanControllerGUI extends ControllerGUI {
         }
     }
 
+    /**
+     * show alert to fan screen
+     * @param alert
+     */
     @FXML
     public void showEventAlert(String alert){
         Button bRemove= new Button();
@@ -63,22 +66,20 @@ public class FanControllerGUI extends ControllerGUI {
 
     }
 
-//    @FXML
-//    public void mouseInL(){
-//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
-//    }
-//
-//    @FXML
-//    public void mouseOutL(){
-//        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
-//    }
 
-
+    /**
+     * remove alert from fan list of events
+     * @param bRemove
+     */
     public void removeAlert(Button bRemove) {
         Parent parent = bRemove.getParent();
         eventMenu.getChildren().remove(parent);
     }
 
+    /**
+     * show notification when the fan connects
+     * @param alert
+     */
     @FXML
     public void postNotification(String alert ){
         Platform.runLater(new Runnable() {

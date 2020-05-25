@@ -18,6 +18,10 @@ public class AddEventReport extends ControllerGUI{
     @FXML
     TextArea report;
 
+    /**
+     * set a report to game
+     * @param event
+     */
     @FXML
     public void setReport(Event event){
         Button btn = ((Button) event.getSource());
@@ -28,7 +32,6 @@ public class AddEventReport extends ControllerGUI{
         else {
             RefereeControllerGui g=ScreenController.getInstance().getRefereeControllerGui();
             String str = (g.gameInfo.get(ScreenController.getInstance().getRefereeControllerGui().currPane));
-//            RefereeController.getInstance().postEventReport(ScreenController.getInstance().userName, str[1], report.getText());
             HashMap<String,String> hashDetails= new HashMap<>();
             hashDetails.put("user_name",username);
             hashDetails.put("game_id",str);
@@ -46,6 +49,10 @@ public class AddEventReport extends ControllerGUI{
         }
     }
 
+    /**
+     * close add event report dialog
+     * @param event
+     */
     @FXML
     public void closeWindow(Event event){
         Button btn = ((Button) event.getSource());
