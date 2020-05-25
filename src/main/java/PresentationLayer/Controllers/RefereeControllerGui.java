@@ -1,11 +1,10 @@
 package PresentationLayer.Controllers;
 
 //import ServiceLayer.*;
-//import PresentationLayer.ScreenController;
+//import PresentationLayer.Controllers.ScreenController;
 //import System.Exeptions.NoRefereePermissions;
 //import System.Exeptions.NoSuchEventException;
 
-import PresentationLayer.ScreenController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;

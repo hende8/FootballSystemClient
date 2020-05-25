@@ -1,10 +1,9 @@
-package PresentationLayer;
+package PresentationLayer.Controllers;
 
 //import PresentationLayer.Controllers.RefereeControllerGui;
 //import System.Users.Referee;
 //import System.Users.User;
 
-import PresentationLayer.Controllers.RefereeControllerGui;
 import javafx.stage.Stage;
 
 import java.util.HashMap;

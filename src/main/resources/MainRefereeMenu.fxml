@@ -174,7 +174,7 @@
                   </Text>
                </children>
             </Pane>
-            <Pane fx:id="info3" layoutX="15.0" layoutY="252.0" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
+            <Pane fx:id="info3" layoutX="15.0" layoutY="252.0" onMouseClicked="#showRightMenu" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -213,7 +213,7 @@
                   </Text>
                </children>
             </Pane>
-            <Pane fx:id="info4" layoutX="15.0" layoutY="330.0" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
+            <Pane fx:id="info4" layoutX="15.0" layoutY="330.0" onMouseClicked="#showRightMenu" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -252,7 +252,7 @@
                   </Text>
                </children>
             </Pane>
-            <Pane fx:id="info5" layoutX="15.0" layoutY="408.0" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
+            <Pane fx:id="info5" layoutX="15.0" layoutY="408.0" onMouseClicked="#showRightMenu" onMouseEntered="#onEnteredPane" onMouseExited="#onExitPane" prefHeight="63.0" prefWidth="452.0" style="-fx-background-radius: 10; -fx-background-color: #F6F6F4;" visible="false">
                <children>
                   <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="199.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
