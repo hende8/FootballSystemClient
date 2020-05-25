@@ -96,10 +96,10 @@ public class AddEventController extends ControllerGUI {
             if (diffHours>=0 && diffHours <= 6.5 ) {
                 ResponseEntity<String> ans=null;
                 if(diffHours<=1.5){
-                     ans = postRequestHashMap("http://localHost:8090/api/referee/addEventDuringGame", hashDetails);
+                     ans = postRequestHashMap("http://132.72.65.99:8090/api/referee/addEventDuringGame", hashDetails);
 
                 }else{
-                    ans = postRequestHashMap("http://localHost:8090/api/referee/addEventAfterGame", hashDetails);
+                    ans = postRequestHashMap("http://132.72.65.99:8090/api/referee/addEventAfterGame", hashDetails);
                 }
                 if(ans==null || ans.getBody()==null ){
                     showAlert("Permissions issue, ask from System Manager new permissions");

@@ -1,6 +1,6 @@
 package PresentationLayer.Controllers;
 
-//import PresentationLayer.Controllers.ScreenController;
+//import PresentationLayer.ScreenController;
 //import ServiceLayer.*;
 //
 //import System.Exeptions.NoSuchAUserNamedException;
@@ -26,7 +26,6 @@ import java.util.HashMap;
 @FxmlView("login.fxml")
 public class LoginController extends ControllerGUI{
 
-    String url = "http://localHost:8090/login";
     @FXML
     TextField userName;
     @FXML
