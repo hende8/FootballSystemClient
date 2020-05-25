@@ -39,115 +39,82 @@ public class RefereeControllerGui extends ControllerGUI{
 
     @FXML
     Button homeBtn;
-
     Pane currPane;
-
     @FXML
     Text userInfo;
-
     @FXML
     Button logOutBtn;
-
     @FXML
     Text time1;
-
     @FXML
     Text date1;
-
     @FXML
     Text teamHomeName1;
-
     @FXML
     Text teamAwayName1;
-
     @FXML
     Text time2;
-
     @FXML
     Text date2;
-
     @FXML
     Text teamHomeName2;
-
     @FXML
     Text teamAwayName2;
-
     @FXML
     Text time3;
-
     @FXML
     Text date3;
-
     @FXML
     Text teamHomeName3;
-
     @FXML
     Text teamAwayName3;
-
     @FXML
     Text time4;
-
     @FXML
     Text date4;
-
     @FXML
     Text teamHomeName4;
-
     @FXML
     Text teamAwayName4;
-
     @FXML
     Text time5;
-
     @FXML
     Text date5;
-
     @FXML
     Text teamHomeName5;
-
     @FXML
     Text teamAwayName5;
-
     @FXML
     Pane info1;
-
     @FXML
     Pane info2;
-
     @FXML
     Pane info3;
-
     @FXML
     Pane info4;
-
     @FXML
     Pane info5;
-
     @FXML
     Text teamNameAway;
-
     @FXML
     Text teamNameHome;
-
     @FXML
     Pane rightPane;
-
     HashMap<Pane, String> gameInfo;
     HashMap<Pane, String> gameTime;
-
     @FXML
     Text score;
-
     @FXML
-
     Pane liveInfo;
-
     @FXML
     Button postEvent;
-
     @FXML
     VBox eventMenu;
     String url="http://localhost:8090/api/referee";
+
+    /**
+     * initialize a referee controller
+     */
     @FXML
     public void initialize() {
         gameInfo = new HashMap<>();
@@ -194,7 +161,16 @@ public class RefereeControllerGui extends ControllerGUI{
             gameTime.put(info5,arrayInfo[5]);
         }
     }
-//
+
+    /**
+     * change text in the games of the referee
+     * @param info
+     * @param teamHomeName
+     * @param teamAwayName
+     * @param time
+     * @param date
+     * @param arrayInfo
+     */
     private void changeText(Pane info, Text teamHomeName, Text teamAwayName, Text time, Text date, String[] arrayInfo) {
         info.setVisible(true);
         teamHomeName.setText(arrayInfo[0]);
@@ -203,7 +179,11 @@ public class RefereeControllerGui extends ControllerGUI{
         date.setText(arrayInfo[3]);
     }
 
-
+    /**
+     * update the current events and update score result
+     * @param type
+     * @param info
+     */
     public void updateEvent(String type, String info) {
         updateEvents();
         if (type.equals("Score")) {
@@ -213,6 +193,10 @@ public class RefereeControllerGui extends ControllerGUI{
         }
     }
 
+    /**
+     * post event call to add event controller
+     * @param event
+     */
     @FXML
     public void postEvent(Event event) {
         String dateLong =  gameTime.get(currPane);
@@ -242,8 +226,7 @@ public class RefereeControllerGui extends ControllerGUI{
 
     }
 
-
-//    @FXML
+   @FXML
     public void onEnteredPane(Event event) {
         try {
             Pane info = ((Pane) event.getSource());
@@ -277,9 +260,12 @@ public class RefereeControllerGui extends ControllerGUI{
         }
     }
 
+    /**
+     * show the events of a chosen game
+     * @param event
+     */
     @FXML
     public void showRightMenu(Event event) {
-
         if (currPane != null) {
             currPane.setStyle("-fx-background-radius:10 ; -fx-background-color: #F6F6F4");
             for (Node node : currPane.getChildren()) {
@@ -308,8 +294,6 @@ public class RefereeControllerGui extends ControllerGUI{
             }
         }
 
-
-
         String refereeName = username;
         String gameId = gameInfo.get(info);
         ResponseEntity<String> r =getStringRequest(url+"/getScore/"+gameId+"/"+refereeName);
@@ -324,50 +308,9 @@ public class RefereeControllerGui extends ControllerGUI{
 
     }
 
-    @FXML
-    public void mouseIn(Event event) {
-        Button btn = ((Button) event.getSource());
-        event.getTarget();
-        btn.setStyle("-fx-background-radius : 10;-fx-background-color :  #2060E4 ; -fx-text-fill : white ");
-    }
-
-    @FXML
-    public void mouseOut(Event event) {
-        Button btn = ((Button) event.getSource());
-        event.getTarget();
-        btn.setStyle("-fx-background-radius : 10;-fx-background-color :  white ; -fx-text-fill :  #444444 ");
-    }
-
-    @FXML
-    public void mouseInL() {
-        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
-    }
-
-    @FXML
-    public void mouseOutL() {
-        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
-    }
-
-
-    @FXML
-    public void handleMouseClickedPass(Event event) {
-        Button btn = ((Button) event.getSource());
-        btn.setStyle("-fx-background-color: #000F64 ; -fx-background-radius:10; -fx-text-fill: white");
-    }
-
-    @FXML
-    public void onHover(Event event) {
-        Button btn = ((Button) event.getSource());
-        btn.setStyle("-fx-background-color: #4179F0 ; -fx-background-radius:10; -fx-text-fill: white");
-
-    }
-
-    @FXML
-    public void OnExit(Event event) {
-        Button btn = ((Button) event.getSource());
-        btn.setStyle("-fx-background-color: #2060E4 ; -fx-background-radius:10; -fx-text-fill: white");
-    }
-
+    /**
+     * update the events by calling a request to server
+     */
     public void updateEvents() {
         String type="";
         eventMenu.getChildren().removeAll(eventMenu.getChildren());
@@ -442,9 +385,6 @@ public class RefereeControllerGui extends ControllerGUI{
                 public void handle(ActionEvent e) {
                     try {
                         editEvent(gameInfo.get(currPane),output[0],output[1]/*time*/,output[2]/*player*/,output[3]/*team*/,output[4]);
-//                        if(output[0].equals("Goal")) {
-//                            updateEvent("Score", gameInfo.get(currPane));
-//                        }
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -464,6 +404,16 @@ public class RefereeControllerGui extends ControllerGUI{
         }
     }
 
+    /**
+     * edit event and create new edit event controller. edit the old event and create a new one
+     * @param gameId
+     * @param type - old event
+     * @param time
+     * @param playerName
+     * @param team
+     * @param eventID
+     * @throws IOException
+     */
     private void editEvent( String gameId, String type,String time, String playerName, String team,String eventID) throws IOException {
         Stage stage = new Stage();
             ScreenController.getInstance().saveGameInfo(gameInfo.get(currPane), teamNameHome.getText(), teamNameAway.getText(), this);
@@ -520,12 +470,17 @@ public class RefereeControllerGui extends ControllerGUI{
         });
     }
 
-    public void update(){}
-
-
+    /**
+     * get the current pane that the use chose
+     * @return
+     */
     public Date getCurrPaneTime() {
         return new Date(Long.valueOf(gameTime.get(currPane)).longValue());
     }
+
+    /**
+     * add event report
+     */
     @FXML
     public void AddEventReportOnAction() {
         if (currPane == null) {
@@ -543,6 +498,51 @@ public class RefereeControllerGui extends ControllerGUI{
             stage.show();
         }
     }
+
+    @FXML
+    public void mouseIn(Event event) {
+        Button btn = ((Button) event.getSource());
+        event.getTarget();
+        btn.setStyle("-fx-background-radius : 10;-fx-background-color :  #2060E4 ; -fx-text-fill : white ");
+    }
+
+    @FXML
+    public void mouseOut(Event event) {
+        Button btn = ((Button) event.getSource());
+        event.getTarget();
+        btn.setStyle("-fx-background-radius : 10;-fx-background-color :  white ; -fx-text-fill :  #444444 ");
+    }
+
+    @FXML
+    public void mouseInL() {
+        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #a60000 ; -fx-text-fill : white ");
+    }
+
+    @FXML
+    public void mouseOutL() {
+        logOutBtn.setStyle("-fx-background-radius : 10;-fx-background-color :  #A73A33 ; -fx-text-fill :  white ");
+    }
+
+
+    @FXML
+    public void handleMouseClickedPass(Event event) {
+        Button btn = ((Button) event.getSource());
+        btn.setStyle("-fx-background-color: #000F64 ; -fx-background-radius:10; -fx-text-fill: white");
+    }
+
+    @FXML
+    public void onHover(Event event) {
+        Button btn = ((Button) event.getSource());
+        btn.setStyle("-fx-background-color: #4179F0 ; -fx-background-radius:10; -fx-text-fill: white");
+
+    }
+
+    @FXML
+    public void OnExit(Event event) {
+        Button btn = ((Button) event.getSource());
+        btn.setStyle("-fx-background-color: #2060E4 ; -fx-background-radius:10; -fx-text-fill: white");
+    }
+
 }
 
 

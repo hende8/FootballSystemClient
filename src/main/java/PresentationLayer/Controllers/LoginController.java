@@ -44,7 +44,11 @@ public class LoginController extends ControllerGUI{
     Label passValidate;
 
 
-
+    /**
+     * handle the log in to system
+     * every kind of user connects to another controller
+     * @throws Exception
+     */
     @FXML
     @ResponseBody
         public void handleLogin() throws Exception {
@@ -86,6 +90,10 @@ public class LoginController extends ControllerGUI{
         }
         }
 
+    /**
+     * check validate parameters
+     * @return
+     */
     private boolean validateParameters() {
         boolean confirm =true;
         if (userPass.getText().length() == 0) {
@@ -101,10 +109,23 @@ public class LoginController extends ControllerGUI{
         return confirm;
     }
 
-    private void parseBody(String s,String val){
+    /**
+     * send info to the server about a fan that want to get a notification in future
+      */
+    public void sendInfo(){
+        String myIP ="localhost";
+        String myPort = "8092";
+        String userName = username;//ScreenController.getInstance().userName;
+        String addListener = "http://localhost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type","application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> e = new HttpEntity<>(headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
+    }
 
-        }
     @FXML
     public void OnHover(){
         loginBtn.setStyle("-fx-background-color: #4179F0 ; -fx-background-radius:10");
@@ -145,31 +166,5 @@ public class LoginController extends ControllerGUI{
         }
 
     }
-
-    public void sendInfo(){
-        String myIP ="localhost";
-        String myPort = "8092";
-        String userName = username;//ScreenController.getInstance().userName;
-        String addListener = "http://localhost:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
-
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type","application/json");
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> e = new HttpEntity<>(headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(addListener, HttpMethod.GET, e , String.class);
-    }
-//
-//    @FXML
-//    public void update(String alert1){
-//        Platform.runLater(new Runnable() {
-//            @Override
-//            public void run() {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION,alert1);
-//        alert.show();
-//            }
-//        });
-//
-//    }
 
 }

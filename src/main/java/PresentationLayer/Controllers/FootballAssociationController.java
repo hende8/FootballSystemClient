@@ -55,6 +55,10 @@ public class FootballAssociationController extends ControllerGUI {
     Button registerTeam;
     List<String> leagues;
     String url="http://localHost:8090/api/FootballAssociation";
+
+    /**
+     * initialize the football association controller
+     */
     public void initialize() {
         leagues=getListRequest(url+"/getAllLeague");
         for (String l : leagues) {
@@ -77,6 +81,11 @@ public class FootballAssociationController extends ControllerGUI {
             teamOwnerComboBox.getItems().add(s);
         }
     }
+
+    /**
+     * get the season by the league
+     * @param event
+     */
     @FXML
     private void leagueComboBoxOnAction(ActionEvent event) {
         String chosenLeague = leagueComboBox.getValue();
@@ -93,6 +102,10 @@ public class FootballAssociationController extends ControllerGUI {
         }
     }
 
+    /**
+     * cancel the window and back to default situation
+     * @param a
+     */
     @FXML
     private void cancelButtonOnAction(ActionEvent a) {
         policyLeaguePane.setVisible(false);
@@ -106,6 +119,10 @@ public class FootballAssociationController extends ControllerGUI {
         schedulingPolicyComboBox.setValue(null);
     }
 
+    /**
+     * cancel team register window
+     * @param a
+     */
     @FXML
     private void teamRegistrationCancelButton(ActionEvent a) {
         teamRegistrationPane.setVisible(false);
@@ -116,6 +133,11 @@ public class FootballAssociationController extends ControllerGUI {
         footballAssociationMenuPane.setVisible(true);
 
     }
+
+    /**
+     * set policy after fill the fields
+     * @param e
+     */
     @FXML
     private void setPolicyButton(Event e) {
         restoreValidate();
@@ -124,6 +146,10 @@ public class FootballAssociationController extends ControllerGUI {
         policyLeaguePane.setVisible(true);
         barButtonPushed((Button)e.getSource());
     }
+
+    /**
+     * cancel all validation signs
+     */
     private void restoreValidate() {
         teamValidate.setVisible(false);
         schedulingPolicyValidate.setVisible(false);
@@ -132,6 +158,10 @@ public class FootballAssociationController extends ControllerGUI {
         scoreValidate.setVisible(false);
         teamOwnerValidate.setVisible(false);
     }
+
+    /**
+     * register team
+     */
     @FXML
     private void registerTeam() {
         boolean confirm = true;
@@ -155,6 +185,11 @@ public class FootballAssociationController extends ControllerGUI {
             teamOwnerComboBox.valueProperty().set(teamOwnerComboBox.getPromptText());
         }
     }
+
+    /**
+     * create team button
+     * @param e
+     */
     @FXML
     public void createTeamButton(Event e) {
         restoreValidate();
@@ -164,7 +199,10 @@ public class FootballAssociationController extends ControllerGUI {
         barButtonPushed((Button)e.getSource());
     }
 
-
+    /**
+     * set policy done button. confirm the process
+     * @param a
+     */
     @FXML
     private void doneButtonOnAction(ActionEvent a) {
         leagueValidate.setVisible(false);
@@ -195,15 +233,12 @@ public class FootballAssociationController extends ControllerGUI {
             hashDetails.put("scoreMethodPolicy",scoreComboBox.getValue());
             hashDetails.put("schedulingPolicy",schedulingPolicyComboBox.getValue());
             postRequestHashMap(url+"/editLeaguePolicy",hashDetails);
-//            FootballAssosiationController.getInstance().editLeaguePolicy(leagueComboBox.getValue(), seasonComboBox.getValue(), scoreComboBox.getValue(), schedulingPolicyComboBox.getValue());
             showAlert("League policy set successfully");
             leagueComboBox.valueProperty().set(leagueComboBox.getPromptText());
             seasonComboBox.valueProperty().set(seasonComboBox.getPromptText());
             scoreComboBox.valueProperty().set(scoreComboBox.getPromptText());
             schedulingPolicyComboBox.valueProperty().set(schedulingPolicyComboBox.getPromptText());
         }
-
-
     }
 }
 
