@@ -97,7 +97,7 @@ public class ControllerGUI extends ImageView {
      */
     @FXML
     public void handleLogOut() throws Exception {
-        getStringRequest("http://localhost:8090/api/user/logOut/"+username);
+        getStringRequest("http://132.72.65.99:8090/api/user/logOut/"+username);
         StageListener.changeScene(username,"login.fxml");
     }
     @FXML
@@ -184,6 +184,7 @@ public class ControllerGUI extends ImageView {
         headers.set("Content-Type","application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> e = new HttpEntity<>(headers);
+
         return restTemplate.exchange(url, HttpMethod.GET, e , String.class);
 
     }

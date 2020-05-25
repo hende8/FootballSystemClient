@@ -112,10 +112,10 @@ public class LoginController extends ControllerGUI{
      * send info to the server about a fan that want to get a notification in future
       */
     public void sendInfo(){
-        String myIP ="localhost";
+        String myIP ="93.172.204.95";
         String myPort = "8092";
         String userName = username;//ScreenController.getInstance().userName;
-        String addListener = "http://132.72.65.99/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
+        String addListener = "http://132.72.65.99:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
