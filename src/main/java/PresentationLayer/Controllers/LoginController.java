@@ -111,8 +111,8 @@ public class LoginController extends ControllerGUI{
      * send info to the server about a fan that want to get a notification in future
       */
     public void sendInfo(){
-        String myIP ="localhost";
-        String myPort = "8092";
+        String myIP ="85.250.251.197";
+        String myPort = "3000";
         String userName = username;//ScreenController.getInstance().userName;
         String addListener = "http://132.72.65.99:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
