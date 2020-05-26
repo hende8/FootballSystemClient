@@ -37,7 +37,7 @@ public class AddEventReport extends ControllerGUI{
             hashDetails.put("game_id",str);
             hashDetails.put("report",report.getText());
 
-            HttpEntity<String> ans= postRequestHashMap("http://132.72.65.99:8090/api/referee/postEventReport",hashDetails);
+            HttpEntity<String> ans= postRequestHashMap("http://"+ipServer+"/api/referee/postEventReport",hashDetails);
             if(((ResponseEntity<String>) ans).getStatusCode()== HttpStatus.ACCEPTED){
                 showAlert("Report added successfully");
             }else{

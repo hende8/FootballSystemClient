@@ -18,6 +18,8 @@ import java.util.List;
 
 public class ControllerGUI extends ImageView {
     static String username;
+
+    String ipServer = "132.72.200.39:8090";
     @FXML
     Pane footballAssociationMenuPane;
     @FXML
@@ -97,7 +99,7 @@ public class ControllerGUI extends ImageView {
      */
     @FXML
     public void handleLogOut() throws Exception {
-        getStringRequest("http://132.72.65.99:8090/api/user/logOut/"+username);
+        getStringRequest("http://"+ipServer+"/api/user/logOut/"+username);
         StageListener.changeScene(username,"login.fxml");
     }
     @FXML

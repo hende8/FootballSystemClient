@@ -102,7 +102,6 @@ public class RefereeControllerGui extends ControllerGUI{
     Pane rightPane;
     HashMap<Pane, String> gameInfo;
     HashMap<Pane, String> gameTime;
-    HashMap<Pane, String> gameLive;
     @FXML
     Text score;
     @FXML
@@ -111,7 +110,7 @@ public class RefereeControllerGui extends ControllerGUI{
     Button postEvent;
     @FXML
     VBox eventMenu;
-    String url="http://132.72.65.99:8090/api/referee";
+    String url="http://"+ipServer+"/api/referee";
 
     /**
      * initialize a referee controller

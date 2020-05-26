@@ -54,7 +54,7 @@ public class FootballAssociationController extends ControllerGUI {
     @FXML
     Button registerTeam;
     List<String> leagues;
-    String url="http://132.72.65.99:8090/api/FootballAssociation";
+    String url="http://"+ipServer+"/api/FootballAssociation";
 
     /**
      * initialize the football association controller

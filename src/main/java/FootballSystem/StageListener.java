@@ -22,6 +22,7 @@ import java.net.URL;
 @Component
 public class StageListener extends ControllerGUI implements ApplicationListener<StageReadyEvent>  {
     private final String title;
+    static String ipServer = "132.72.200.39:8090";
     private static org.springframework.core.io.Resource fxml = null;
     private ApplicationContext ac;
     private  static Stage primaryStage;
@@ -71,7 +72,7 @@ public class StageListener extends ControllerGUI implements ApplicationListener<
             headers.set("Content-Type","application/json");
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> e1 = new HttpEntity<>(headers);
-            restTemplate.exchange("http://132.72.65.99:8090/api/user/logOut/"+userName, HttpMethod.GET, e1 , String.class);
+            restTemplate.exchange("http://"+ipServer+"/api/user/logOut/"+userName, HttpMethod.GET, e1 , String.class);
 
         });
             Text lblData = (Text) root.lookup("#userNameLabel");
