@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class bootApp {
 
     static PresentationLayer.Controllers.FanControllerGUI listenerr;
+
     public static void main(String[] args) {
       Application.launch(FootballSystemApplication.class,args);
+
     }
 
     @PostMapping(value = "/")
@@ -26,6 +28,7 @@ public class bootApp {
 
 
     public static  void addListener (PresentationLayer.Controllers.FanControllerGUI listener){
+
         listenerr = listener;
     }
 
