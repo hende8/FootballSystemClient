@@ -2,10 +2,7 @@ package FootballSystem;
 
 import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RequestMapping("/api/notification")
@@ -17,11 +14,16 @@ public class bootApp {
       Application.launch(FootballSystemApplication.class,args);
     }
 
-    @PostMapping
+    @PostMapping(value = "/")
     public void showEventAlert(@RequestBody String alert)  {
         listenerr.postNotification(alert);
 
     }
+    @GetMapping
+    public void a(){
+        System.out.println("aa");
+    }
+
 
     public static  void addListener (PresentationLayer.Controllers.FanControllerGUI listener){
         listenerr = listener;

@@ -71,7 +71,7 @@ public class StageListener extends ControllerGUI implements ApplicationListener<
             headers.set("Content-Type","application/json");
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> e1 = new HttpEntity<>(headers);
-            restTemplate.exchange("http://localhost:8090/api/user/logOut/"+userName, HttpMethod.GET, e1 , String.class);
+            restTemplate.exchange("http://132.72.65.99:8090/api/user/logOut/"+userName, HttpMethod.GET, e1 , String.class);
 
         });
             Text lblData = (Text) root.lookup("#userNameLabel");

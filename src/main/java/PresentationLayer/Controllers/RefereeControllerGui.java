@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+
 public class RefereeControllerGui extends ControllerGUI{
 
 
@@ -101,6 +102,7 @@ public class RefereeControllerGui extends ControllerGUI{
     Pane rightPane;
     HashMap<Pane, String> gameInfo;
     HashMap<Pane, String> gameTime;
+    HashMap<Pane, String> gameLive;
     @FXML
     Text score;
     @FXML
@@ -134,6 +136,7 @@ public class RefereeControllerGui extends ControllerGUI{
                 changeText(info2, teamHomeName2, teamAwayName2, time2, date2, arrayInfo);
                 gameInfo.put(info2, arrayInfo[4]);
                 gameTime.put(info2, arrayInfo[5]);
+
             }
 
 //
@@ -142,7 +145,8 @@ public class RefereeControllerGui extends ControllerGUI{
                 String[] arrayInfo = str.split(",");
                 changeText(info3, teamHomeName3, teamAwayName3, time3, date3, arrayInfo);
                 gameInfo.put(info3, arrayInfo[4]);
-                gameTime.put(info2, arrayInfo[5]);
+                gameTime.put(info3, arrayInfo[5]);
+
             }
 //
             if (myGames.size() > 3) {
@@ -151,6 +155,7 @@ public class RefereeControllerGui extends ControllerGUI{
                 changeText(info4, teamHomeName4, teamAwayName4, time4, date4, arrayInfo);
                 gameInfo.put(info4, arrayInfo[4]);
                 gameTime.put(info4, arrayInfo[5]);
+
             }
 //
             if (myGames.size() > 4) {
@@ -159,6 +164,8 @@ public class RefereeControllerGui extends ControllerGUI{
                 changeText(info5, teamHomeName5, teamAwayName5, time5, date5, arrayInfo);
                 gameInfo.put(info5, arrayInfo[4]);
                 gameTime.put(info5, arrayInfo[5]);
+
+
             }
         }
     }
@@ -299,13 +306,25 @@ public class RefereeControllerGui extends ControllerGUI{
         String gameId = gameInfo.get(info);
         ResponseEntity<String> r =getStringRequest(url+"/getScore/"+gameId+"/"+refereeName);
         score.setText(r.getBody());
-        ResponseEntity<String> result1= getStringRequest(url+"/isGameLive/"+gameId+"/"+refereeName);
-        if (result1.getBody().equals("true")) {
+//        ResponseEntity<String> result1= getStringRequest(url+"/isGameLive/"+gameId+"/"+refereeName);
+        if (isGameAlive()) {
             liveInfo.setVisible(true);
-        } else {
+        }else {
             liveInfo.setVisible(false);
         }
         updateEvents();
+
+    }
+
+    private boolean isGameAlive() {
+        long time=getCurrPaneTime().getTime();
+        long diffHours = (new Date(System.currentTimeMillis()).getTime() - time) / (60 * 60 * 1000);
+            ResponseEntity<String> ans=null;
+            if(diffHours<=1.5 && diffHours>=0 ) {
+                return true;
+            }else{
+                return false;
+            }
 
     }
 
