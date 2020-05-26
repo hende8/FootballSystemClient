@@ -14,7 +14,7 @@ public class bootApp {
       Application.launch(FootballSystemApplication.class,args);
     }
 
-    @PostMapping(value = "/")
+    @PostMapping
     public void showEventAlert(@RequestBody String alert)  {
         listenerr.postNotification(alert);
 
