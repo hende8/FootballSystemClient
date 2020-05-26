@@ -32,7 +32,7 @@ public class FanControllerGUI extends ControllerGUI {
     public void initialize() {
         bootApp.addListener(this);
         //showing alert for user
-        List<String> alerts=getListRequest("http://132.72.65.99:8090/api/notification/getMyAlerts/"+username);
+        List<String> alerts=getListRequest("http://"+ipServer+"/api/notification/getMyAlerts/"+username);
         if(alerts!=null){
             for (String alert:alerts){
                 showEventAlert(alert);

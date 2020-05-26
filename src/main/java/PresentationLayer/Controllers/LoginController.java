@@ -20,6 +20,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 
 @Component
@@ -60,7 +64,7 @@ public class LoginController extends ControllerGUI{
         }
         if(validateParameters()){
             String userN = userName.getText();
-            String login = "http://132.72.65.99:8090/api/user/login";
+            String login = "http://"+ipServer+"/api/user/login";
             HashMap<String, String> hashmap = new HashMap();
             hashmap.put("password", userPass.getText());
             hashmap.put("user_name", userName.getText());
@@ -111,10 +115,10 @@ public class LoginController extends ControllerGUI{
      * send info to the server about a fan that want to get a notification in future
       */
     public void sendInfo(){
-        String myIP ="85.250.251.197";
-        String myPort = "3000";
+        String myIP ="localhost";
+        String myPort = "8092";
         String userName = username;//ScreenController.getInstance().userName;
-        String addListener = "http://132.72.65.99:8090/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
+        String addListener = "http://"+ipServer+"/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

@@ -14,16 +14,17 @@ public class bootApp {
       Application.launch(FootballSystemApplication.class,args);
     }
 
-    @PostMapping
+    @PostMapping(value = "/")
     public void showEventAlert(@RequestBody String alert)  {
         listenerr.postNotification(alert);
 
     }
-
     @GetMapping
     public void a(){
         System.out.println("aa");
     }
+
+
 
     public static  void addListener (PresentationLayer.Controllers.FanControllerGUI listener){
         listenerr = listener;
