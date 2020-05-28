@@ -16,7 +16,7 @@ public class bootApp {
 
     }
 
-    @PostMapping(value = "/")
+    @PostMapping
     public void showEventAlert(@RequestBody String alert)  {
         listenerr.postNotification(alert);
 

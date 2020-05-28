@@ -20,10 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 
 @Component
@@ -115,8 +111,8 @@ public class LoginController extends ControllerGUI{
      * send info to the server about a fan that want to get a notification in future
       */
     public void sendInfo(){
-        String myIP ="localhost";
-        String myPort = "8092";
+        String myIP ="132.72.200.64";
+        String myPort = "3001";
         String userName = username;//ScreenController.getInstance().userName;
         String addListener = "http://"+ipServer+"/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
