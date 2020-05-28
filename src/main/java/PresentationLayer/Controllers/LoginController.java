@@ -116,7 +116,7 @@ public class LoginController extends ControllerGUI{
       */
     public void sendInfo(){
         String myIP ="localhost";
-        String myPort = "8092";
+        String myPort = "3000";
         String userName = username;//ScreenController.getInstance().userName;
         String addListener = "http://"+ipServer+"/api/notification/register/"+myIP+"/"+myPort+"/"+""+userName+"";
 
