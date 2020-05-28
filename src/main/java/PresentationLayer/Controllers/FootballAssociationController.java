@@ -89,8 +89,10 @@ public class FootballAssociationController extends ControllerGUI {
     @FXML
     private void leagueComboBoxOnAction(ActionEvent event) {
         String chosenLeague = leagueComboBox.getValue();
+
         for (String l : leagues) {
             if (chosenLeague!=null && chosenLeague.equals(l)) {
+                seasonComboBox.getItems().clear();
                 List<String> leagueInfo=getListRequest(url+"/getLeagueInformation/"+l);
                 for (String li : leagueInfo) {
                     if(!seasonComboBox.getItems().contains(li)) {

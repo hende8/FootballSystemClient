@@ -167,7 +167,7 @@ public class AddEventController extends ControllerGUI {
     private boolean checkPlayerName(String str){
         char [] chars = str.toCharArray();
         for(char c : chars){
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')||(c == ' ')))
                 return false;
         }
         return true;
