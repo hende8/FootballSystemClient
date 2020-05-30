@@ -159,38 +159,6 @@ public class AddEventController extends ControllerGUI {
 
     }
 
-    /**
-     * check validation of player name
-     * @param str
-     * @return
-     */
-    private boolean checkPlayerName(String str){
-        char [] chars = str.toCharArray();
-        for(char c : chars){
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')||(c == ' ')))
-                return false;
-        }
-        return true;
-    }
-
-    /**
-     * check validation of minute in the game
-     * @param str
-     * @return
-     */
-    private boolean checkMin(String str){
-        char [] chars = str.toCharArray();
-        if(chars.length > 3 || chars.length < 1)
-            return false;
-        for(char c : chars){
-            if (!((c >= '0' && c <= '9')))
-                return false;
-        }
-        if(Integer.parseInt(str) > 120 || Integer.parseInt(str) < 1){
-            return false;
-        }
-        return true;
-    }
 
     @FXML
     public void closeAddEvent(){

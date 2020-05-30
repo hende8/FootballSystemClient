@@ -449,45 +449,78 @@ public class RefereeControllerGui extends ControllerGUI{
         b.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                String alert="";
+                String type1="";
+                boolean confirm=true;
                 HashMap<String,String> details=new HashMap<>();
                 details.put("old_team",team);
                 details.put("old_eventType",type);
                 details.put("user_name",username);
                 String oldType=type;
                 details.put("game",gameId);
-                ComboBox<String> ss= ((ComboBox<String>) root.lookup("#comboEventBox"));
-                String s= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
-                details.put("type",s);
-                String type=s;
+                String s="";
+                boolean check =((ComboBox<String>) root.lookup("#comboEventBox")).getSelectionModel().isEmpty();
+                if(check){
+                    alert="Choose event type\n";
+                }else{
+                     s= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
+
+                    details.put("type",s);
+                    type1=s;
+                }
                 s= ((TextField) root.lookup("#playerNameText")).getText();
-                details.put("playerName",s);
+                if( s.equals("") || !checkPlayerName(s)){
+                    alert+="The player name should contain only letters"+"\n";
+                    confirm=false;
+                }else{
+                    details.put("playerName",s);
+                }
                 String team1="";
                 if (((RadioButton) root.lookup("#home")).isSelected()) {
-                    team1 = teamNameHome.getText();
-                } else if (((RadioButton) root.lookup("#away")).isSelected()) {
                     team1 = teamNameAway.getText();
+                    details.put("team",team1);
+                } else if (((RadioButton) root.lookup("#away")).isSelected()) {
+                    team1 = teamNameHome.getText();
+                    details.put("team",team1);
+                }else{
+                    alert+="You have to choose a team\n";
+                    confirm=false;
                 }
-                details.put("team",team1);
                 details.put("event_id",eventID);
                 s= ((TextField) root.lookup("#timeEvent")).getText();
-                details.put("min",s);
-
-
-                 Object status=postRequestHashMap(url+"/editEventAfterGame",details);
-                if(status==null){
-                    showAlert("No permissions");
-                    stage.close();
+                if(s==null || s.equals("") ||!(checkMin(s)) ){
+                    alert +="The minute should be number between 1 to 120"+"\n";
+                    confirm=false;
                 }else{
-                    showAlert("Edit success");
-                    if(type.equals("Goal") || oldType.equals("Goal")){
-                        updateEvent("Score",gameId);
-                    }
-                    stage.close();
-                    updateEvents();
+                    details.put("min",s);
                 }
+                Object status=null;
+                if(confirm){
+                     status=postRequestHashMap(url+"/editEventAfterGame",details);
+                    if(status==null){
+                        showAlert("No permissions");
+                        stage.close();
+                    }else{
+                        showAlert("Edit success");
+                        if(type.equals("Goal") || oldType.equals("Goal")){
+                            updateEvent("Score",gameId);
+                        }
+                        stage.close();
+                        updateEvents();
+                    }
+                }else{
+                    showAlert(alert);
+                }
+
+
+
             }
         });
     }
+
+//    private boolean addEventValidate() {
+//
+//    }
 
     /**
      * get the current pane that the use chose
