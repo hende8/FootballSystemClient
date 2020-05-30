@@ -195,7 +195,6 @@ public class FootballAssociationController extends ControllerGUI {
             }
         }
     }
-
     /**
      * create team button
      * @param e
