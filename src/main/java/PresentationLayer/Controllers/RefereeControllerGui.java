@@ -368,8 +368,8 @@ public class RefereeControllerGui extends ControllerGUI{
             try {
                 if (output[0].contains("Goal")) {
                     image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\goal.png")));
-                    image.setFitWidth(14);
-                    image.setFitHeight(20);
+                    image.setFitWidth(15);
+                    image.setFitHeight(15);
                 } else if (output[0].contains("Yellow")) {
                     image = new ImageView(new Image(new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\resources\\pictures\\yellowCard.png")));
                     image.setFitWidth(14);
