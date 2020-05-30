@@ -459,14 +459,15 @@ public class RefereeControllerGui extends ControllerGUI{
                 String oldType=type;
                 details.put("game",gameId);
                 String s="";
+                String newType="";
                 boolean check =((ComboBox<String>) root.lookup("#comboEventBox")).getSelectionModel().isEmpty();
                 if(check){
                     alert="Choose event type\n";
                 }else{
-                     s= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
+                    newType= ((ComboBox<String>) root.lookup("#comboEventBox")).getValue().replace(" ", "");
 
-                    details.put("type",s);
-                    type1=s;
+                    details.put("type",newType);
+//                    newType=s;
                 }
                 s= ((TextField) root.lookup("#playerNameText")).getText();
                 if( s.equals("") || !checkPlayerName(s)){
@@ -502,7 +503,7 @@ public class RefereeControllerGui extends ControllerGUI{
                         stage.close();
                     }else{
                         showAlert("Edit success");
-                        if(type.equals("Goal") || oldType.equals("Goal")){
+                        if(type.equals("Goal") || newType.equals("Goal")){
                             updateEvent("Score",gameId);
                         }
                         stage.close();
