@@ -89,7 +89,7 @@
                   <Image url="@pictures/stad.png" />
                </image>
             </ImageView>
-            <Button fx:id="createTeamsBtn1" layoutX="18.0" layoutY="364.0" mnemonicParsing="false" onAction="#setPolicyButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="167.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text=" Leagues" textAlignment="CENTER">
+            <Button fx:id="createTeamsBtn1" layoutX="18.0" layoutY="364.0" mnemonicParsing="false" onAction="#setPolicyButton" onMouseEntered="#mouseIn" onMouseExited="#mouseOut" prefHeight="30.0" prefWidth="167.0" style="-fx-text-fill: #444444; -fx-background-color: white; -fx-background-radius: 10;" text=" League Policy" textAlignment="CENTER">
                <font>
                   <Font name="Open Sans" size="16.0" />
                </font>

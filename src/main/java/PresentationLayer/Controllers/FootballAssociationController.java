@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -178,16 +179,22 @@ public class FootballAssociationController extends ControllerGUI {
             teamValidate.setVisible(true);
         }
         if (confirm) {
-            HashMap<String,String> hashDetails = new HashMap<>();
-            hashDetails.put("team_owner",teamOwnerComboBox.getValue());
-            hashDetails.put("team_name",teamNameTextField.getText());
-            postRequestHashMap(url+"/createTeam",hashDetails);
-            showAlert("A new team registered to the system successfully");
-            teamNameTextField.clear();
-            teamOwnerComboBox.valueProperty().set(teamOwnerComboBox.getPromptText());
+            HashMap<String, String> hashDetails = new HashMap<>();
+
+            hashDetails.put("team_owner", teamOwnerComboBox.getValue());
+            hashDetails.put("team_name", teamNameTextField.getText().replace(' ', '_'));
+            ResponseEntity<String> ans = postRequestHashMap(url + "/createTeam", hashDetails);
+            if (ans == null) {
+                showAlert("Team name is already in use. try again! ");
+                teamNameTextField.clear();
+                teamOwnerComboBox.valueProperty().set(teamOwnerComboBox.getPromptText());
+            } else {
+                showAlert("A new team registered to the system successfully");
+                teamNameTextField.clear();
+                teamOwnerComboBox.valueProperty().set(teamOwnerComboBox.getPromptText());
+            }
         }
     }
-
     /**
      * create team button
      * @param e

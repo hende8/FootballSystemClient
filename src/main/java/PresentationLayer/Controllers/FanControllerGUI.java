@@ -31,23 +31,15 @@ public class FanControllerGUI extends ControllerGUI {
     @FXML
     public void initialize() {
         bootApp.addListener(this);
-        //showing alert for user
-//        MyThread m=new MyThread();
-//         m.start();
         List<String> alerts=getListRequest("http://"+ipServer+"/api/notification/getMyAlerts/"+username);
         if(alerts!=null){
             for (String alert:alerts){
                 showEventAlert(alert);
             }
         }
-//        System.out.println("keep going...");
+        //showing alert for user
+
     }
-//    public class MyThread extends Thread {
-//
-//        public void run(){
-//            waitMethod();
-//        }
-//    }
 
     /**
      * show alert to fan screen
@@ -55,6 +47,7 @@ public class FanControllerGUI extends ControllerGUI {
      */
     @FXML
     public void showEventAlert(String alert){
+
         Button bRemove= new Button();
         bRemove.setText("X");
         bRemove.setOnAction((click -> {
@@ -99,26 +92,5 @@ public class FanControllerGUI extends ControllerGUI {
         });
     }
 
-
-
-    private synchronized void waitMethod() {
-
-        while (true) {
-            List<String> alerts=getListRequest("http://"+ipServer+"/api/notification/getMyAlerts/"+username);
-            if(alerts!=null){
-                for (String alert:alerts){
-                    showEventAlert(alert);
-                }
-            }
-            try {
-                this.wait(1000*10);
-                System.out.println("20 seconds done");
-            } catch (InterruptedException e) {
-
-                e.printStackTrace();
-            }
-        }
-
-    }
 
 }

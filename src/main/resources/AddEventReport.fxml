@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PresentationLayer.Controllers.AddEventReport">
    <children>
       <TextArea fx:id="report" layoutX="100.0" layoutY="100.0" prefHeight="200.0" prefWidth="398.0" style="-fx-border-color: black; -fx-background-color: white;" />
-      <Text fill="#444444" layoutX="200.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Report" textAlignment="CENTER" wrappingWidth="204.77490234375">
+      <Text fill="#444444" layoutX="200.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report" textAlignment="CENTER" wrappingWidth="204.77490234375">
          <font>
             <Font name="Open Sans Semibold" size="24.0" />
          </font>
