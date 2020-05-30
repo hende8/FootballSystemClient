@@ -170,7 +170,8 @@ public class FootballAssociationController extends ControllerGUI {
         boolean confirm = true;
         teamOwnerValidate.setVisible(false);
         teamValidate.setVisible(false);
-        if (teamOwnerComboBox.getValue() == null) {
+        String s = teamOwnerComboBox.getValue();
+        if (teamOwnerComboBox.getValue() == null || teamOwnerComboBox.getValue().equals("Choose a team owner")) {
             confirm = false;
             teamOwnerValidate.setVisible(true);
         }

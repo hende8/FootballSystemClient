@@ -308,7 +308,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="rightPane" layoutX="732.0" layoutY="30.0" prefHeight="840.0" prefWidth="678.0" style="-fx-background-color: white;" visible="false">
+      <Pane fx:id="rightPane" layoutX="732.0" layoutY="30.0" prefHeight="840.0" prefWidth="678.0" style="-fx-background-color: white;">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="120.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -335,7 +335,7 @@
                   <Font name="Open Sans Semibold" size="16.0" />
                </font>
             </Button>
-            <Text fx:id="score" fill="#444444" layoutX="270.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0:8" textAlignment="CENTER" wrappingWidth="138.77490234375">
+            <Text fx:id="score" fill="#444444" layoutX="270.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0:0" textAlignment="CENTER" wrappingWidth="138.77490234375">
                <font>
                   <Font name="Open Sans Semibold" size="50.0" />
                </font>

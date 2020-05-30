@@ -14,7 +14,6 @@ public class Main extends Application {
     ConfigurableApplicationContext applicationContext;
     @Override
     public void init() {
-
         applicationContext=new SpringApplicationBuilder(Main.class).run();
     }
 

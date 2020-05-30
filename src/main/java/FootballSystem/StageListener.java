@@ -22,8 +22,8 @@ import java.net.URL;
 @Component
 public class StageListener extends ControllerGUI implements ApplicationListener<StageReadyEvent>  {
     private final String title;
-  // static String ipServer = "132.72.65.99:8090";
-  static String ipServer = "132.72.200.186:8090";
+   static String ipServer = "132.72.65.99:8090";
+//  static String ipServer = "132.72.200.186:8090";
     private static org.springframework.core.io.Resource fxml = null;
     private ApplicationContext ac;
     private  static Stage primaryStage;

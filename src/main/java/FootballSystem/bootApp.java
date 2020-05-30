@@ -21,10 +21,6 @@ public class bootApp {
         listenerr.postNotification(alert);
 
     }
-    @GetMapping
-    public void a(){
-        System.out.println("aa");
-    }
 
 
 
