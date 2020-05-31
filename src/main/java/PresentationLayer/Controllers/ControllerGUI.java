@@ -19,8 +19,8 @@ import java.util.List;
 public class ControllerGUI extends ImageView {
     static String username;
 
-   // String ipServer = "132.72.65.99:8090";
-    String ipServer = "132.72.200.186:8090";
+    String ipServer = "132.72.65.99:8090";
+  //  String ipServer = "132.72.200.186:8090";
     @FXML
     Pane footballAssociationMenuPane;
     @FXML
